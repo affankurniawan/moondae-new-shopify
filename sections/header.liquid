@@ -15,14 +15,10 @@
     </a>
 
     <nav class="nav-main">
-      {%- for link in section.settings.menu.links -%}
-        <a
-          href="{{ link.url }}"
-          {% if link.active %}class="active"{% endif %}
-        >
-          {{ link.title }}
-        </a>
-      {%- endfor -%}
+      <a href="/collections/all">SHOP</a>
+      <a href="/pages/cerita-kami">ABOUT</a>
+      <a href="/collections">COLLECTION</a>
+      <a href="/pages/moonbae-circle">CAMPAIGN</a>
     </nav>
 
     <div class="header-actions">
@@ -51,9 +47,10 @@
   <div class="mobile-panel">
     <button class="close-btn" aria-label="Tutup" data-close-mobile-menu>&times;</button>
     <nav>
-      {%- for link in section.settings.menu.links -%}
-        <a href="{{ link.url }}">{{ link.title }}</a>
-      {%- endfor -%}
+      <a href="/collections/all">SHOP</a>
+      <a href="/pages/cerita-kami">ABOUT</a>
+      <a href="/collections">COLLECTION</a>
+      <a href="/pages/moonbae-circle">CAMPAIGN</a>
     </nav>
   </div>
 </div>
