@@ -44,13 +44,13 @@
       },
       "block_order": ["t1", "t2", "t3", "t4"]
     },
-    "featured": {
-      "type": "featured-collection",
-      "settings": {
-        "heading": "Featured Collection",
-        "subheading": "Best picks that are most loved",
-        "limit": 8
-      }
+    "category_preview": {
+      "type": "category-preview",
+      "settings": {}
+    },
+    "brand_statement": {
+      "type": "brand-statement",
+      "settings": {}
     },
     "new_arrivals": {
       "type": "new-arrivals",
@@ -75,7 +75,7 @@
       "settings": {
         "heading": "Bestsellers",
         "subheading": "Most loved picks",
-        "limit": 3
+        "limit": 4
       }
     },
     "instagram": {
@@ -92,26 +92,16 @@
         "ig6": { "type": "photo" }
       },
       "block_order": ["ig1", "ig2", "ig3", "ig4", "ig5", "ig6"]
-    },
-    "moonbae_cta": {
-      "type": "moonbae-circle-cta",
-      "blocks": {
-        "b1": { "type": "benefit", "settings": { "text": "Early access" } },
-        "b2": { "type": "benefit", "settings": { "text": "10% First discount" } },
-        "b3": { "type": "benefit", "settings": { "text": "Weekly styling tips" } },
-        "b4": { "type": "benefit", "settings": { "text": "Exclusive events" } }
-      },
-      "block_order": ["b1", "b2", "b3", "b4"]
     }
   },
   "order": [
     "hero",
     "tagline",
-    "featured",
+    "category_preview",
+    "brand_statement",
+    "bestsellers",
     "new_arrivals",
     "brand_story",
-    "bestsellers",
-    "instagram",
-    "moonbae_cta"
+    "instagram"
   ]
 }

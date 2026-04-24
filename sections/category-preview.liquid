@@ -1,0 +1,289 @@
+{%- comment -%}
+  MOONDAE — Category Preview
+  Row 1: 4 category cards | Row 2: 2 collection cards
+{%- endcomment -%}
+
+<section class="cat-preview">
+  <div class="container">
+
+    {{- "" -}}
+    <!-- Row 1 — Categories -->
+    <div class="cat-preview__categories">
+
+      <!-- 1. SHOULDER BAG -->
+      <a href="{{ section.settings.cat_url_1 | default: '#' }}" class="cat-card">
+        <div class="cat-card__img-wrap">
+          <span class="cat-card__label">SHOULDER BAG</span>
+          {%- if section.settings.cat_image_1 != blank -%}
+            <img src="{{ section.settings.cat_image_1 | image_url: width: 600 }}" alt="Shoulder Bag" width="600" loading="lazy">
+          {%- else -%}
+            {{ 'product-1' | placeholder_svg_tag: 'cat-card__placeholder' }}
+          {%- endif -%}
+        </div>
+      </a>
+
+      <!-- 2. SLING BAG -->
+      <a href="{{ section.settings.cat_url_2 | default: '#' }}" class="cat-card">
+        <div class="cat-card__img-wrap">
+          <span class="cat-card__label">SLING BAG</span>
+          {%- if section.settings.cat_image_2 != blank -%}
+            <img src="{{ section.settings.cat_image_2 | image_url: width: 600 }}" alt="Sling Bag" width="600" loading="lazy">
+          {%- else -%}
+            {{ 'product-2' | placeholder_svg_tag: 'cat-card__placeholder' }}
+          {%- endif -%}
+        </div>
+      </a>
+
+      <!-- 3. BACKPACK -->
+      <a href="{{ section.settings.cat_url_3 | default: '#' }}" class="cat-card">
+        <div class="cat-card__img-wrap">
+          <span class="cat-card__label">BACKPACK</span>
+          {%- if section.settings.cat_image_3 != blank -%}
+            <img src="{{ section.settings.cat_image_3 | image_url: width: 600 }}" alt="Backpack" width="600" loading="lazy">
+          {%- else -%}
+            {{ 'product-3' | placeholder_svg_tag: 'cat-card__placeholder' }}
+          {%- endif -%}
+        </div>
+      </a>
+
+      <!-- 4. TOTE BAG -->
+      <a href="{{ section.settings.cat_url_4 | default: '#' }}" class="cat-card">
+        <div class="cat-card__img-wrap">
+          <span class="cat-card__label">TOTE BAG</span>
+          {%- if section.settings.cat_image_4 != blank -%}
+            <img src="{{ section.settings.cat_image_4 | image_url: width: 600 }}" alt="Tote Bag" width="600" loading="lazy">
+          {%- else -%}
+            {{ 'product-4' | placeholder_svg_tag: 'cat-card__placeholder' }}
+          {%- endif -%}
+        </div>
+      </a>
+
+    </div>
+
+    <!-- Row 2 — Collections -->
+    <div class="cat-preview__collections">
+
+      <!-- ROMAN COLLECTION -->
+      <a href="{{ section.settings.col_url_1 | default: '#' }}" class="col-card">
+        <div class="col-card__img-wrap">
+          <span class="col-card__label">ROMAN COLLECTION</span>
+          {%- if section.settings.col_image_1 != blank -%}
+            <img src="{{ section.settings.col_image_1 | image_url: width: 900 }}" alt="Roman Collection" width="900" loading="lazy">
+          {%- else -%}
+            {{ 'collection-1' | placeholder_svg_tag: 'col-card__placeholder' }}
+          {%- endif -%}
+        </div>
+      </a>
+
+      <!-- DENIM COLLECTION -->
+      <a href="{{ section.settings.col_url_2 | default: '#' }}" class="col-card">
+        <div class="col-card__img-wrap">
+          <span class="col-card__label">DENIM COLLECTION</span>
+          {%- if section.settings.col_image_2 != blank -%}
+            <img src="{{ section.settings.col_image_2 | image_url: width: 900 }}" alt="Denim Collection" width="900" loading="lazy">
+          {%- else -%}
+            {{ 'collection-2' | placeholder_svg_tag: 'col-card__placeholder' }}
+          {%- endif -%}
+        </div>
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+.cat-preview {
+  padding: 64px 0;
+  background: var(--bg);
+}
+
+/* ── Row 1 : Categories ──────────────────────────── */
+.cat-preview__categories {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.cat-card {
+  display: block;
+  text-decoration: none;
+}
+
+.cat-card__img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #EDE8E2;
+}
+
+.cat-card__img-wrap img,
+.cat-card__img-wrap .cat-card__placeholder {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.cat-card:hover .cat-card__img-wrap img,
+.cat-card:hover .cat-card__img-wrap svg { transform: scale(1.04); }
+
+.cat-card__label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: 14px 12px;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  text-align: center;
+  background: linear-gradient(to bottom, rgba(237,232,226,0.85) 0%, rgba(237,232,226,0) 100%);
+}
+
+/* ── Row 2 : Collections ─────────────────────────── */
+.cat-preview__collections {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.col-card {
+  display: block;
+  text-decoration: none;
+}
+
+.col-card__img-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: #EDE8E2;
+}
+
+.col-card__img-wrap img,
+.col-card__img-wrap .col-card__placeholder {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.col-card:hover .col-card__img-wrap img,
+.col-card:hover .col-card__img-wrap svg { transform: scale(1.04); }
+
+.col-card__label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  padding: 16px 12px;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  text-align: center;
+  background: linear-gradient(to bottom, rgba(237,232,226,0.85) 0%, rgba(237,232,226,0) 100%);
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 900px) {
+  .cat-preview__categories { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 560px) {
+  .cat-preview { padding: 40px 0; }
+  .cat-preview__categories { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .cat-preview__collections { grid-template-columns: 1fr; gap: 12px; }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Category Preview",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Gambar Kategori"
+    },
+    {
+      "type": "image_picker",
+      "id": "cat_image_1",
+      "label": "Shoulder Bag — Gambar"
+    },
+    {
+      "type": "url",
+      "id": "cat_url_1",
+      "label": "Shoulder Bag — Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "cat_image_2",
+      "label": "Sling Bag — Gambar"
+    },
+    {
+      "type": "url",
+      "id": "cat_url_2",
+      "label": "Sling Bag — Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "cat_image_3",
+      "label": "Backpack — Gambar"
+    },
+    {
+      "type": "url",
+      "id": "cat_url_3",
+      "label": "Backpack — Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "cat_image_4",
+      "label": "Tote Bag — Gambar"
+    },
+    {
+      "type": "url",
+      "id": "cat_url_4",
+      "label": "Tote Bag — Link"
+    },
+    {
+      "type": "header",
+      "content": "Gambar Koleksi"
+    },
+    {
+      "type": "image_picker",
+      "id": "col_image_1",
+      "label": "Roman Collection — Gambar"
+    },
+    {
+      "type": "url",
+      "id": "col_url_1",
+      "label": "Roman Collection — Link"
+    },
+    {
+      "type": "image_picker",
+      "id": "col_image_2",
+      "label": "Denim Collection — Gambar"
+    },
+    {
+      "type": "url",
+      "id": "col_url_2",
+      "label": "Denim Collection — Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category Preview"
+    }
+  ]
+}
+{% endschema %}

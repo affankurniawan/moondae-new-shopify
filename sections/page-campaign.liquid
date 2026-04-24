@@ -1,0 +1,282 @@
+{%- comment -%} MOONDAE — Campaign Page {%- endcomment -%}
+
+<!-- HERO -->
+<div class="cp-hero">
+  <div class="container">
+    <p class="cp-eyebrow">MOONDAE CAMPAIGN</p>
+    <h1 class="cp-hero__heading">Stories Behind<br>Every Collection</h1>
+    <p class="cp-hero__sub">Each campaign is a world we build — a mood, a woman, a moment.<br>Explore the story behind each collection.</p>
+  </div>
+</div>
+
+<!-- CAMPAIGN GRID -->
+<section class="cp-section">
+  <div class="container">
+
+    <!-- Campaign 1: Roman Collection -->
+    <article class="cp-card">
+      <div class="cp-card__img">
+        {%- if section.settings.img_roman != blank -%}
+          <img src="{{ section.settings.img_roman | image_url: width: 1200 }}" alt="Roman Collection" loading="lazy">
+        {%- else -%}
+          <div class="cp-card__placeholder"></div>
+        {%- endif -%}
+        <div class="cp-card__overlay">
+          <span class="cp-card__tag">SS 2025</span>
+        </div>
+      </div>
+      <div class="cp-card__body">
+        <div class="cp-card__text">
+          <p class="cp-card__eyebrow">CAMPAIGN 01</p>
+          <h2 class="cp-card__heading">Roman Collection</h2>
+          <p class="cp-card__desc">Inspired by timeless Roman architecture — structured lines, warm tones, and enduring elegance. Bags designed to move with you through every chapter of the day.</p>
+          <div class="cp-card__meta">
+            <span>Season: Spring / Summer 2025</span>
+            <span>·</span>
+            <span>4 Styles</span>
+          </div>
+        </div>
+        <a href="{{ section.settings.url_roman | default: '/collections/roman-collection' }}" class="cp-card__btn">
+          View Collection
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <!-- Campaign 2: Denim Collection -->
+    <article class="cp-card cp-card--reverse">
+      <div class="cp-card__img">
+        {%- if section.settings.img_denim != blank -%}
+          <img src="{{ section.settings.img_denim | image_url: width: 1200 }}" alt="Denim Collection" loading="lazy">
+        {%- else -%}
+          <div class="cp-card__placeholder"></div>
+        {%- endif -%}
+        <div class="cp-card__overlay">
+          <span class="cp-card__tag">FW 2025</span>
+        </div>
+      </div>
+      <div class="cp-card__body">
+        <div class="cp-card__text">
+          <p class="cp-card__eyebrow">CAMPAIGN 02</p>
+          <h2 class="cp-card__heading">Denim Collection</h2>
+          <p class="cp-card__desc">Effortless and raw — the Denim Collection speaks to the woman who moves fast and travels light. Durable materials, understated design, built for real life.</p>
+          <div class="cp-card__meta">
+            <span>Season: Fall / Winter 2025</span>
+            <span>·</span>
+            <span>4 Styles</span>
+          </div>
+        </div>
+        <a href="{{ section.settings.url_denim | default: '/collections/denim-collection' }}" class="cp-card__btn">
+          View Collection
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </article>
+
+    <!-- Coming Soon Card -->
+    <div class="cp-coming-soon">
+      <p class="cp-eyebrow">COMING SOON</p>
+      <h3>New Campaign</h3>
+      <p>Something new is in the works. Stay tuned — follow us on Instagram for the first look.</p>
+      <a href="{{ settings.social_instagram_url | default: '#' }}" target="_blank" class="cp-coming-soon__link">
+        @moondae.official
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<style>
+/* ── Hero ─────────────────────────────────────────── */
+.cp-hero {
+  min-height: 55vh;
+  background: linear-gradient(150deg, #232D3F 0%, #3d3028 100%);
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 80px;
+}
+.cp-eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--moondae-gold);
+  margin-bottom: 16px;
+}
+.cp-hero__heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.cp-hero__sub {
+  color: rgba(255,255,255,0.65);
+  font-size: 1rem;
+  line-height: 1.75;
+  max-width: 500px;
+}
+
+/* ── Section ──────────────────────────────────────── */
+.cp-section {
+  padding: 80px 0;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* ── Campaign Card ────────────────────────────────── */
+.cp-card {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 560px;
+  border-bottom: 1px solid var(--moondae-beige);
+}
+.cp-card--reverse .cp-card__img { order: 2; }
+.cp-card--reverse .cp-card__body { order: 1; }
+
+.cp-card__img {
+  position: relative;
+  overflow: hidden;
+  background: #D9D3CC;
+  min-height: 480px;
+}
+.cp-card__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.cp-card:hover .cp-card__img img { transform: scale(1.04); }
+.cp-card__placeholder { width: 100%; height: 100%; background: linear-gradient(135deg, #D9D3CC, #B2998A); }
+
+.cp-card__overlay {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+.cp-card__tag {
+  background: rgba(255,255,255,0.9);
+  color: var(--moondae-brown);
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: 2px;
+}
+
+.cp-card__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 64px;
+  background: var(--bg);
+}
+.cp-card--reverse .cp-card__body { background: var(--moondae-white); }
+
+.cp-card__eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--moondae-light-brown);
+  margin-bottom: 14px;
+}
+.cp-card__heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  color: var(--moondae-brown);
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+.cp-card__desc {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.85;
+  margin-bottom: 24px;
+  max-width: 420px;
+}
+.cp-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--moondae-beige);
+  letter-spacing: 0.04em;
+  margin-bottom: 32px;
+}
+.cp-card__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--moondae-brown);
+  text-decoration: none;
+  border-bottom: 1px solid var(--moondae-brown);
+  padding-bottom: 2px;
+  width: fit-content;
+  transition: gap var(--transition), opacity var(--transition);
+}
+.cp-card__btn:hover { gap: 12px; opacity: 0.75; }
+
+/* ── Coming Soon ──────────────────────────────────── */
+.cp-coming-soon {
+  text-align: center;
+  padding: 80px 24px;
+  background: var(--moondae-white);
+}
+.cp-coming-soon h3 {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  color: var(--moondae-brown);
+  margin-bottom: 12px;
+  margin-top: 12px;
+}
+.cp-coming-soon p {
+  color: var(--text-secondary);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  max-width: 400px;
+  margin: 0 auto 20px;
+}
+.cp-coming-soon__link {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--moondae-brown);
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border-bottom: 1px solid var(--moondae-light-brown);
+  padding-bottom: 2px;
+}
+.cp-coming-soon__link:hover { opacity: 0.7; }
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 900px) {
+  .cp-card,
+  .cp-card--reverse { grid-template-columns: 1fr; }
+  .cp-card--reverse .cp-card__img { order: 0; }
+  .cp-card--reverse .cp-card__body { order: 0; }
+  .cp-card__body { padding: 40px 24px; }
+  .cp-card__img { min-height: 320px; }
+  .cp-hero { min-height: 40vh; padding-bottom: 56px; }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Campaign Page",
+  "settings": [
+    { "type": "header", "content": "Campaign Images" },
+    { "type": "image_picker", "id": "img_roman", "label": "Roman Collection — Image" },
+    { "type": "url", "id": "url_roman", "label": "Roman Collection — Link" },
+    { "type": "image_picker", "id": "img_denim", "label": "Denim Collection — Image" },
+    { "type": "url", "id": "url_denim", "label": "Denim Collection — Link" }
+  ],
+  "presets": [{ "name": "Campaign Page" }]
+}
+{% endschema %}

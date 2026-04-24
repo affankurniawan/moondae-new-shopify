@@ -1,69 +1,286 @@
 {%- comment -%}
-  MOONDAE — Bestsellers Section
+  MOONDAE — Bestsellers Slider
+  Prototype: 4 hardcoded products. Connect a collection via schema when ready.
 {%- endcomment -%}
 
 {%- assign collection = section.settings.collection -%}
+{%- assign has_collection = false -%}
+{%- if collection != blank and collection.products_count > 0 -%}
+  {%- assign has_collection = true -%}
+{%- endif -%}
 
-<section class="bestsellers-section">
+<section class="bs-section">
   <div class="container">
-    <div class="section-header">
-      <div>
-        <h2 class="section-title">{{ section.settings.heading }}</h2>
-        <p class="section-sub">{{ section.settings.subheading }}</p>
-      </div>
-      {%- if collection != blank -%}
-        <a href="{{ collection.url }}" class="see-all">Lihat Semua</a>
+
+    <div class="bs-header">
+      <h2 class="section-title">{{ section.settings.heading | default: 'Bestsellers' }}</h2>
+      <p class="section-sub">{{ section.settings.subheading | default: 'Most loved picks' }}</p>
+      {%- if has_collection -%}
+        <a href="{{ collection.url }}" class="see-all">See All</a>
       {%- endif -%}
     </div>
 
-    <div class="product-grid">
-      {%- if collection != blank -%}
-        {%- for product in collection.products limit: section.settings.limit -%}
-          {% render 'product-card', product: product %}
-        {%- endfor -%}
-      {%- else -%}
-        {%- for i in (1..3) -%}
-          {% render 'product-card-placeholder', index: i %}
-        {%- endfor -%}
-      {%- endif -%}
+  </div>
+
+  <!-- Slider wrapper (full-bleed so arrows sit at edges) -->
+  <div class="bs-slider-outer">
+    <button class="bs-arrow bs-arrow--prev" aria-label="Previous">&#8249;</button>
+
+    <div class="bs-track-wrap">
+      <div class="bs-track" id="bs-track">
+
+        {%- if has_collection -%}
+          {%- for product in collection.products limit: section.settings.limit -%}
+            <a href="{{ product.url }}" class="bs-card">
+              <div class="bs-card__img">
+                {%- if product.featured_image -%}
+                  <img src="{{ product.featured_image | image_url: width: 600 }}"
+                       alt="{{ product.title }}" width="600" loading="lazy">
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag: 'bs-card__placeholder' }}
+                {%- endif -%}
+              </div>
+              <div class="bs-card__foot">
+                <span class="bs-card__name">{{ product.title }}</span>
+                <span class="bs-card__arrow">&#8594;</span>
+              </div>
+            </a>
+          {%- endfor -%}
+
+        {%- else -%}
+          {%- assign proto_names = "Yonsei Bag,Inha Bag,Seoul Bag,Mini Naomi Bag" | split: "," -%}
+          {%- for name in proto_names -%}
+            {%- assign idx = forloop.index -%}
+            <a href="#" class="bs-card">
+              <div class="bs-card__img">
+                {{ 'product-' | append: idx | placeholder_svg_tag: 'bs-card__placeholder' }}
+              </div>
+              <div class="bs-card__foot">
+                <span class="bs-card__name">{{ name }}</span>
+                <span class="bs-card__arrow">&#8594;</span>
+              </div>
+            </a>
+          {%- endfor -%}
+        {%- endif -%}
+
+      </div>
     </div>
+
+    <button class="bs-arrow bs-arrow--next" aria-label="Next">&#8250;</button>
   </div>
 </section>
 
+<style>
+.bs-section {
+  padding: 64px 0;
+  background: var(--bg);
+}
+
+.bs-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.bs-header .section-sub {
+  margin-bottom: 0;
+}
+
+/* ── Slider layout ───────────────────────────────── */
+.bs-slider-outer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0 24px;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.bs-track-wrap {
+  overflow: hidden;
+  flex: 1;
+}
+
+.bs-track {
+  display: flex;
+  gap: 20px;
+  transition: transform 0.4s ease;
+}
+
+/* ── Product card ────────────────────────────────── */
+.bs-card {
+  flex: 0 0 calc(25% - 15px);
+  min-width: 0;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+}
+
+.bs-card__img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  background: #F2EDE8;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bs-card__img img,
+.bs-card__img .bs-card__placeholder {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.bs-card:hover .bs-card__img img,
+.bs-card:hover .bs-card__img svg { transform: scale(1.04); }
+
+.bs-card__foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0 4px;
+}
+
+.bs-card__name {
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.bs-card__arrow {
+  font-size: 1.1rem;
+  color: var(--moondae-brown);
+  transition: transform 0.2s ease;
+}
+
+.bs-card:hover .bs-card__arrow { transform: translateX(4px); }
+
+/* ── Arrows ──────────────────────────────────────── */
+.bs-arrow {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid var(--moondae-beige);
+  background: var(--bg);
+  color: var(--moondae-brown);
+  font-size: 1.5rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+  z-index: 2;
+}
+
+.bs-arrow:hover {
+  background: var(--moondae-brown);
+  color: #fff;
+}
+
+.bs-arrow--prev { margin-right: 16px; }
+.bs-arrow--next { margin-left: 16px; }
+
+.bs-arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 900px) {
+  .bs-card { flex: 0 0 calc(50% - 10px); }
+}
+
+@media (max-width: 560px) {
+  .bs-section { padding: 40px 0; }
+  .bs-card { flex: 0 0 calc(80% - 10px); }
+  .bs-arrow { width: 30px; height: 30px; font-size: 1.2rem; }
+  .bs-arrow--prev { margin-right: 8px; }
+  .bs-arrow--next { margin-left: 8px; }
+}
+</style>
+
+<script>
+(function() {
+  var track   = document.getElementById('bs-track');
+  var btnPrev = track.closest('.bs-slider-outer').querySelector('.bs-arrow--prev');
+  var btnNext = track.closest('.bs-slider-outer').querySelector('.bs-arrow--next');
+  var current = 0;
+
+  function getVisible() {
+    if (window.innerWidth <= 560) return 1;
+    if (window.innerWidth <= 900) return 2;
+    return 4;
+  }
+
+  function totalCards() { return track.children.length; }
+
+  function maxIndex() { return Math.max(0, totalCards() - getVisible()); }
+
+  function update() {
+    var cardWidth  = track.children[0].getBoundingClientRect().width;
+    var gap        = 20;
+    track.style.transform = 'translateX(-' + (current * (cardWidth + gap)) + 'px)';
+    btnPrev.disabled = current <= 0;
+    btnNext.disabled = current >= maxIndex();
+  }
+
+  btnPrev.addEventListener('click', function() {
+    if (current > 0) { current--; update(); }
+  });
+
+  btnNext.addEventListener('click', function() {
+    if (current < maxIndex()) { current++; update(); }
+  });
+
+  window.addEventListener('resize', function() {
+    current = Math.min(current, maxIndex());
+    update();
+  });
+
+  update();
+})();
+</script>
+
 {% schema %}
 {
-  "name": "Bestseller",
+  "name": "Bestsellers",
   "settings": [
     {
       "type": "text",
       "id": "heading",
       "label": "Judul",
-      "default": "Bestseller"
+      "default": "Bestsellers"
     },
     {
       "type": "text",
       "id": "subheading",
       "label": "Subjudul",
-      "default": "Yang paling banyak dicintai"
+      "default": "Most loved picks"
     },
     {
       "type": "collection",
       "id": "collection",
-      "label": "Koleksi"
+      "label": "Koleksi (opsional — hubungkan setelah siap)"
     },
     {
       "type": "range",
       "id": "limit",
       "label": "Jumlah produk",
-      "min": 3,
-      "max": 8,
+      "min": 4,
+      "max": 12,
       "step": 1,
-      "default": 3
+      "default": 4
     }
   ],
   "presets": [
     {
-      "name": "Bestseller"
+      "name": "Bestsellers"
     }
   ]
 }

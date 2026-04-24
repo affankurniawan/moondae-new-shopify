@@ -1,101 +1,275 @@
-{%- comment -%}
-  MOONDAE — Collection / Product Listing Page
-{%- endcomment -%}
+{%- comment -%} MOONDAE — Collection / Product Listing Page {%- endcomment -%}
 
 {%- paginate collection.products by section.settings.products_per_page -%}
 
-{%- comment -%} Page Hero {%- endcomment -%}
-<div class="page-hero">
+<!-- HERO -->
+<div class="coll-hero">
   <div class="container">
-    <div class="breadcrumb">
-      <a href="/">Beranda</a>
+    <nav class="coll-breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/collections">Collection</a>
       <span>/</span>
       <span>{{ collection.title }}</span>
-    </div>
-    <h1>{{ collection.title }}</h1>
-    {%- if collection.description != blank -%}
-      <p>{{ collection.description }}</p>
-    {%- else -%}
-      <p>Temukan tas yang tepat untuk setiap momen</p>
-    {%- endif -%}
+    </nav>
+    <h1 class="coll-hero__title">{{ collection.title }}</h1>
+    <p class="coll-hero__desc">
+      {%- if collection.description != blank -%}
+        {{ collection.description }}
+      {%- else -%}
+        Discover bags designed for women who know what they want.
+      {%- endif -%}
+    </p>
   </div>
 </div>
 
-{%- comment -%} Filter & Sort Bar {%- endcomment -%}
-<div class="collection-layout">
+<!-- FILTER & SORT BAR -->
+<div class="coll-bar">
   <div class="container">
-    <div class="filter-bar">
-      <div class="filter-tags">
-        <a href="{{ collection.url }}" class="filter-tag{% unless current_tags %} active{% endunless %}">
-          Semua Tas
+    <div class="coll-bar__inner">
+
+      <!-- Filter tags -->
+      <div class="coll-filters">
+        <a href="{{ collection.url }}" class="coll-filter{% unless current_tags %} active{% endunless %}">
+          All
         </a>
         {%- for tag in collection.all_tags -%}
-          {%- if tag contains 'Tipe:' -%}
-            {%- assign clean_tag = tag | remove: 'Tipe:' -%}
-            <a href="{{ collection.url }}/{{ tag | handle }}" class="filter-tag{% if current_tags contains tag %} active{% endif %}">
-              {{ clean_tag }}
-            </a>
-          {%- endif -%}
+          <a href="{{ collection.url }}/{{ tag | handle }}"
+             class="coll-filter{% if current_tags contains tag %} active{% endif %}">
+            {{ tag | replace: 'Type:', '' | replace: 'Tipe:', '' | strip }}
+          </a>
         {%- endfor -%}
       </div>
-      <div style="display:flex; align-items:center; gap:16px;">
-        <span class="results-count">{{ collection.products_count }} produk</span>
-        <select class="sort-select" onchange="window.location.href=this.value">
+
+      <!-- Count + Sort -->
+      <div class="coll-bar__right">
+        <span class="coll-count">{{ collection.products_count }} item{{ collection.products_count | pluralize: '', 's' }}</span>
+        <select class="coll-sort" onchange="window.location.href=this.value" aria-label="Sort by">
           {%- for option in collection.sort_options -%}
-            <option
-              value="{{ collection.url }}?sort_by={{ option.value }}"
-              {% if collection.sort_by == option.value %}selected{% endif %}
-            >
+            <option value="{{ collection.url }}?sort_by={{ option.value }}"
+              {% if collection.sort_by == option.value %}selected{% endif %}>
               {{ option.name }}
             </option>
           {%- endfor -%}
         </select>
       </div>
-    </div>
 
-    {%- comment -%} Product Grid {%- endcomment -%}
+    </div>
+  </div>
+</div>
+
+<!-- PRODUCT GRID -->
+<div class="coll-body">
+  <div class="container">
     <div class="product-grid">
       {%- for product in collection.products -%}
         {% render 'product-card', product: product %}
       {%- else -%}
-        <div style="grid-column: 1/-1; text-align:center; padding:80px 0;">
-          <p style="color: var(--text-secondary); font-size:1.1rem;">Belum ada produk di kategori ini.</p>
-          <a href="/collections/all" class="btn btn-secondary" style="margin-top:20px;">Lihat Semua Koleksi</a>
+        <div class="coll-empty">
+          <p>No products found in this collection.</p>
+          <a href="/collections/all" class="btn btn-secondary">View All Products</a>
         </div>
       {%- endfor -%}
     </div>
 
-    {%- comment -%} Pagination {%- endcomment -%}
+    <!-- PAGINATION -->
     {%- if paginate.pages > 1 -%}
-      <nav class="pagination" style="display:flex; justify-content:center; gap:8px; padding:48px 0;">
+      <nav class="coll-pagination">
         {%- if paginate.previous -%}
-          <a href="{{ paginate.previous.url }}" class="btn btn-sm btn-secondary">&laquo; Sebelumnya</a>
+          <a href="{{ paginate.previous.url }}" class="coll-page-btn coll-page-btn--nav">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            Prev
+          </a>
         {%- endif -%}
+
         {%- for part in paginate.parts -%}
           {%- if part.is_link -%}
-            <a href="{{ part.url }}" class="btn btn-sm btn-secondary">{{ part.title }}</a>
+            <a href="{{ part.url }}" class="coll-page-btn">{{ part.title }}</a>
+          {%- elsif part.title == paginate.current_page -%}
+            <span class="coll-page-btn coll-page-btn--active">{{ part.title }}</span>
           {%- else -%}
-            <span class="btn btn-sm btn-primary">{{ part.title }}</span>
+            <span class="coll-page-btn coll-page-btn--dots">{{ part.title }}</span>
           {%- endif -%}
         {%- endfor -%}
+
         {%- if paginate.next -%}
-          <a href="{{ paginate.next.url }}" class="btn btn-sm btn-secondary">Selanjutnya &raquo;</a>
+          <a href="{{ paginate.next.url }}" class="coll-page-btn coll-page-btn--nav">
+            Next
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
         {%- endif -%}
       </nav>
     {%- endif -%}
+
   </div>
 </div>
 
 {%- endpaginate -%}
 
+<style>
+/* ── Hero ─────────────────────────────────────────── */
+.coll-hero {
+  padding: 56px 0 48px;
+  background: var(--bg);
+  border-bottom: 1px solid var(--moondae-beige);
+}
+.coll-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+.coll-breadcrumb a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color var(--transition);
+}
+.coll-breadcrumb a:hover { color: var(--moondae-brown); }
+.coll-breadcrumb span:not(:last-child) { opacity: 0.4; }
+
+.coll-hero__title {
+  font-family: var(--font-serif);
+  font-size: clamp(1.75rem, 4vw, 3rem);
+  color: var(--moondae-brown);
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+.coll-hero__desc {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+/* ── Filter Bar ───────────────────────────────────── */
+.coll-bar {
+  position: sticky;
+  top: var(--nav-height-desktop);
+  z-index: 10;
+  background: rgba(249,246,242,0.95);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--moondae-beige);
+  padding: 14px 0;
+}
+.coll-bar__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.coll-filters {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.coll-filter {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 6px 16px;
+  border: 1px solid var(--moondae-beige);
+  border-radius: 999px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+.coll-filter:hover,
+.coll-filter.active {
+  background: var(--moondae-brown);
+  color: #fff;
+  border-color: var(--moondae-brown);
+}
+
+.coll-bar__right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.coll-count {
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+.coll-sort {
+  font-size: 0.8125rem;
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid var(--moondae-beige);
+  border-radius: var(--radius-sm);
+  padding: 6px 10px;
+  cursor: pointer;
+  outline: none;
+}
+.coll-sort:focus { border-color: var(--moondae-brown); }
+
+/* ── Product Grid ─────────────────────────────────── */
+.coll-body { padding: 48px 0 80px; }
+
+.coll-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 0;
+  color: var(--text-secondary);
+}
+.coll-empty p { font-size: 1rem; margin-bottom: 20px; }
+
+/* ── Pagination ───────────────────────────────────── */
+.coll-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  padding-top: 56px;
+  flex-wrap: wrap;
+}
+.coll-page-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 12px;
+  justify-content: center;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  border: 1px solid var(--moondae-beige);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+.coll-page-btn:hover { border-color: var(--moondae-brown); color: var(--moondae-brown); }
+.coll-page-btn--active {
+  background: var(--moondae-brown);
+  border-color: var(--moondae-brown);
+  color: #fff;
+}
+.coll-page-btn--dots { border-color: transparent; pointer-events: none; }
+.coll-page-btn--nav { font-weight: 600; letter-spacing: 0.04em; }
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 768px) {
+  .coll-hero { padding: 40px 0 32px; }
+  .coll-bar { position: static; }
+  .coll-bar__inner { flex-direction: column; align-items: flex-start; }
+  .coll-bar__right { width: 100%; justify-content: space-between; }
+  .coll-body { padding: 32px 0 56px; }
+}
+</style>
+
 {% schema %}
 {
-  "name": "Halaman Koleksi",
+  "name": "Collection",
   "settings": [
     {
       "type": "range",
       "id": "products_per_page",
-      "label": "Produk per halaman",
+      "label": "Products per page",
       "min": 8,
       "max": 24,
       "step": 4,

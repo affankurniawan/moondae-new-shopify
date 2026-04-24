@@ -1,187 +1,347 @@
-{%- comment -%}
-  MOONDAE — Cerita Kami (Brand Story Page)
-{%- endcomment -%}
+{%- comment -%} MOONDAE — About Us Page (fully hardcoded) {%- endcomment -%}
 
-{%- comment -%} Hero {%- endcomment -%}
-<div class="story-hero">
+<!-- HERO -->
+<div class="ab-hero">
   <div class="container">
-    {%- if section.settings.eyebrow != blank -%}
-      <p class="eyebrow" style="color:var(--moondae-gold); font-size:0.75rem; font-weight:600; letter-spacing:0.2em; text-transform:uppercase; margin-bottom:16px;">
-        {{ section.settings.eyebrow }}
-      </p>
-    {%- endif -%}
-    <h1>{{ section.settings.hero_heading }}</h1>
-    <p>{{ section.settings.hero_description }}</p>
+    <p class="ab-eyebrow">ABOUT MOONDAE</p>
+    <h1 class="ab-hero__heading">Designed with heart,<br>present for your daily life</h1>
+    <p class="ab-hero__sub">A story about simplicity, function, and love for details<br>that are invisible but always felt.</p>
   </div>
 </div>
 
-{%- comment -%} Story Sections {%- endcomment -%}
-{%- for block in section.blocks -%}
-  {%- case block.type -%}
-
-    {%- when 'story_split' -%}
-      <section class="story-section" {{ block.shopify_attributes }}>
-        <div class="container">
-          <div class="story-split{% if block.settings.reverse %} reverse{% endif %}">
-            <div class="story-split-img">
-              {%- if block.settings.image != blank -%}
-                <img
-                  src="{{ block.settings.image | image_url: width: 800 }}"
-                  alt="{{ block.settings.heading | escape }}"
-                  loading="lazy"
-                  width="{{ block.settings.image.width }}"
-                  height="{{ block.settings.image.height }}"
-                >
-              {%- endif -%}
-            </div>
-            <div class="story-split-text">
-              {%- if block.settings.eyebrow != blank -%}
-                <p class="eyebrow">{{ block.settings.eyebrow }}</p>
-              {%- endif -%}
-              <h2>{{ block.settings.heading }}</h2>
-              <p>{{ block.settings.text }}</p>
-              {%- if block.settings.text_2 != blank -%}
-                <p>{{ block.settings.text_2 }}</p>
-              {%- endif -%}
-              {%- if block.settings.quote != blank -%}
-                <blockquote style="border-left:2px solid var(--moondae-light-brown); padding-left:20px; margin-top:16px; font-style:italic; color:var(--moondae-brown);">
-                  {{ block.settings.quote }}
-                </blockquote>
-              {%- endif -%}
-            </div>
-          </div>
-        </div>
-      </section>
-
-    {%- when 'values' -%}
-      <section class="story-section" {{ block.shopify_attributes }}>
-        <div class="container" style="text-align:center;">
-          {%- if block.settings.eyebrow != blank -%}
-            <p class="eyebrow" style="color:var(--moondae-light-brown); font-size:0.75rem; font-weight:500; letter-spacing:0.15em; text-transform:uppercase; margin-bottom:12px;">
-              {{ block.settings.eyebrow }}
-            </p>
-          {%- endif -%}
-          <h2 class="section-title">{{ block.settings.heading }}</h2>
-          <p class="section-sub">{{ block.settings.subheading }}</p>
-          <div class="story-values">
-            <div class="value-card">
-              <div class="value-icon">&#10022;</div>
-              <h3>{{ block.settings.value_1_title }}</h3>
-              <p>{{ block.settings.value_1_text }}</p>
-            </div>
-            <div class="value-card">
-              <div class="value-icon">&#9678;</div>
-              <h3>{{ block.settings.value_2_title }}</h3>
-              <p>{{ block.settings.value_2_text }}</p>
-            </div>
-            <div class="value-card">
-              <div class="value-icon">&#9671;</div>
-              <h3>{{ block.settings.value_3_title }}</h3>
-              <p>{{ block.settings.value_3_text }}</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-  {%- endcase -%}
-{%- endfor -%}
-
-{%- comment -%} CTA {%- endcomment -%}
-<section class="story-section" style="text-align:center;">
+<!-- ORIGIN STORY -->
+<section class="ab-section">
   <div class="container">
-    <h2 class="section-title">{{ section.settings.cta_heading }}</h2>
-    <p class="section-sub" style="max-width:480px; margin:0 auto 24px;">{{ section.settings.cta_text }}</p>
-    <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-      {%- if section.settings.cta_button_1 != blank -%}
-        <a href="{{ section.settings.cta_url_1 }}" class="btn btn-primary">{{ section.settings.cta_button_1 }}</a>
-      {%- endif -%}
-      {%- if section.settings.cta_button_2 != blank -%}
-        <a href="{{ section.settings.cta_url_2 }}" class="btn btn-secondary">{{ section.settings.cta_button_2 }}</a>
-      {%- endif -%}
+    <div class="ab-split">
+      <div class="ab-split__img">
+        {%- if section.settings.img_origin != blank -%}
+          <img src="{{ section.settings.img_origin | image_url: width: 800 }}" alt="Origin story" loading="lazy">
+        {%- else -%}
+          <div class="ab-split__placeholder"></div>
+        {%- endif -%}
+      </div>
+      <div class="ab-split__text">
+        <p class="ab-eyebrow ab-eyebrow--brown">THE BEGINNING</p>
+        <h2>Born from frustration with existing choices</h2>
+        <p>Moondae started in 2022, when its founder — a young woman working in Jakarta's creative industry — struggled to find a bag that truly met her needs: functional for long work days, aesthetic for social media content, and not feeling "too much" at every occasion.</p>
+        <p>The imported Korean bags she found felt right in design, but their prices were far out of reach for most Indonesian women. Affordable local bags often sacrificed aesthetics. This is where Moondae found its gap.</p>
+        <p>Korean bags that she found felt right in design, but were far out of reach. Local affordable bags often sacrificed aesthetics. Moondae found its place right in between.</p>
+        <blockquote class="ab-quote">"I wanted to make bags that feel like premium Korean products, but made and sold in Indonesia — at a price that makes sense."</blockquote>
+      </div>
     </div>
   </div>
 </section>
 
+<!-- PHILOSOPHY -->
+<section class="ab-section ab-section--alt">
+  <div class="container">
+    <div class="ab-split ab-split--reverse">
+      <div class="ab-split__img">
+        {%- if section.settings.img_philosophy != blank -%}
+          <img src="{{ section.settings.img_philosophy | image_url: width: 800 }}" alt="Philosophy" loading="lazy">
+        {%- else -%}
+          <div class="ab-split__placeholder"></div>
+        {%- endif -%}
+      </div>
+      <div class="ab-split__text">
+        <p class="ab-eyebrow ab-eyebrow--brown">PHILOSOPHY</p>
+        <h2>Function Meets Style —<br>more than just a tagline</h2>
+        <p>At Moondae, every design decision starts with the same question: <em>"Does this make the wearer's life easier?"</em> If not, it doesn't make it into the final product.</p>
+        <p>This is why every Moondae bag has well-organised internal pockets, materials that withstand daily Indonesian conditions, and a design that doesn't demand attention — but is always noticed.</p>
+        <p>Our tagline, <em>"Never Overpowering But Always Present,"</em> isn't just about aesthetics. It's about how the right bag can boost your confidence without having to shout.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="ab-section ab-section--values">
+  <div class="container ab-center">
+    <p class="ab-eyebrow">WHAT WE BELIEVE</p>
+    <h2 class="section-title">Moondae Values</h2>
+    <p class="section-sub">Three principles underlying every decision we make — from design to service.</p>
+    <div class="ab-values">
+      <div class="ab-value-card">
+        <div class="ab-value-icon">&#10022;</div>
+        <h3>Effortless Elegance</h3>
+        <p>Beauty that doesn't require excessive effort. Design that works for you, not the other way around.</p>
+      </div>
+      <div class="ab-value-card">
+        <div class="ab-value-icon">&#9678;</div>
+        <h3>Modern yet Understated</h3>
+        <p>Following trend developments without getting trapped in them. Relevant today, still relevant next year.</p>
+      </div>
+      <div class="ab-value-card">
+        <div class="ab-value-icon">&#9671;</div>
+        <h3>Accessible Luxury</h3>
+        <p>Premium quality should not be an exclusive right. We believe every woman deserves to experience truly good products.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTION -->
+<section class="ab-section">
+  <div class="container">
+    <div class="ab-split">
+      <div class="ab-split__img">
+        {%- if section.settings.img_production != blank -%}
+          <img src="{{ section.settings.img_production | image_url: width: 800 }}" alt="Production" loading="lazy">
+        {%- else -%}
+          <div class="ab-split__placeholder"></div>
+        {%- endif -%}
+      </div>
+      <div class="ab-split__text">
+        <p class="ab-eyebrow ab-eyebrow--brown">PRODUCTION PROCESS</p>
+        <h2>Built with standards<br>we're proud of</h2>
+        <p>Every Moondae bag is produced by experienced local Indonesian craftsmen. We carefully select materials — ensuring every component from zippers to stitching meets our quality standards.</p>
+        <p>Quality control is carried out at every stage of production: from pattern cutting, sewing, to packaging. Bags that don't meet our standards will not reach your hands.</p>
+        <p>We are proud to be a local brand that doesn't just claim quality, but proves it in every product we send.</p>
+        <div class="ab-stats">
+          <div class="ab-stat">
+            <span class="ab-stat__value">2022</span>
+            <span class="ab-stat__label">Founded</span>
+          </div>
+          <div class="ab-stat">
+            <span class="ab-stat__value">5000+</span>
+            <span class="ab-stat__label">Happy customers</span>
+          </div>
+          <div class="ab-stat">
+            <span class="ab-stat__value">4.8&#9733;</span>
+            <span class="ab-stat__label">Average rating</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BEHIND THE NAME -->
+<section class="ab-name">
+  <div class="container ab-center">
+    <p class="ab-eyebrow">BEHIND THE NAME</p>
+    <h2 class="ab-name__heading">Why "Moondae"?</h2>
+    <p class="ab-name__text">"Moondae" is inspired by the Korean word <strong>문대</strong> which means "to gently care" — an act full of attention and affection. This name reflects our approach to every product: designed with care, produced with respect for its wearer.</p>
+    <p class="ab-name__text ab-name__text--italic">Like the moon that is always present at night — calm, consistent, giving light without demanding attention — that is how we want every Moondae bag to feel in its owner's life.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="ab-cta">
+  <div class="container ab-center">
+    <h2 class="ab-cta__heading">Start Your Journey with Moondae</h2>
+    <p class="ab-cta__text">Find the bag designed to accompany your daily life — elegant without excess, functional without sacrificing style.</p>
+    <div class="ab-cta__btns">
+      <a href="/collections/all" class="btn btn-primary">Explore Collection</a>
+      <a href="#" class="btn btn-secondary">Join Moonbae Circle</a>
+    </div>
+  </div>
+</section>
+
+<style>
+/* ── Hero ─────────────────────────────────────────── */
+.ab-hero {
+  min-height: 65vh;
+  background: linear-gradient(150deg, #232D3F 0%, #3d3028 100%);
+  display: flex;
+  align-items: flex-end;
+  padding-bottom: 80px;
+}
+.ab-hero__heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.ab-hero__sub {
+  color: rgba(255,255,255,0.65);
+  font-size: 1rem;
+  line-height: 1.75;
+  max-width: 480px;
+}
+
+/* ── Eyebrow ──────────────────────────────────────── */
+.ab-eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--moondae-gold);
+  margin-bottom: 16px;
+}
+.ab-eyebrow--brown { color: var(--moondae-light-brown); }
+
+/* ── Sections ─────────────────────────────────────── */
+.ab-section { padding: 96px 0; background: var(--bg); }
+.ab-section--alt { background: var(--moondae-white); }
+.ab-section--values { background: #E8E2DC; }
+.ab-center { text-align: center; }
+
+/* ── Split layout ─────────────────────────────────── */
+.ab-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.ab-split--reverse .ab-split__img { order: 2; }
+.ab-split--reverse .ab-split__text { order: 1; }
+
+.ab-split__img {
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--moondae-beige);
+}
+.ab-split__img img { width: 100%; height: 100%; object-fit: cover; }
+.ab-split__placeholder { width: 100%; height: 100%; }
+
+.ab-split__text h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  color: var(--moondae-brown);
+  margin-bottom: 24px;
+  line-height: 1.25;
+}
+.ab-split__text p {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  line-height: 1.85;
+  margin-bottom: 16px;
+}
+.ab-quote {
+  border-left: 2px solid var(--moondae-light-brown);
+  padding-left: 20px;
+  margin-top: 24px;
+  font-style: italic;
+  color: var(--moondae-brown);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+/* ── Values ───────────────────────────────────────── */
+.ab-values {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+  text-align: left;
+}
+.ab-value-card {
+  padding: 36px 28px;
+  background: var(--bg);
+  border-radius: var(--radius-md);
+}
+.ab-value-icon {
+  font-size: 1.5rem;
+  color: var(--moondae-brown);
+  margin-bottom: 16px;
+}
+.ab-value-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--moondae-brown);
+  margin-bottom: 10px;
+}
+.ab-value-card p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+}
+
+/* ── Stats ────────────────────────────────────────── */
+.ab-stats {
+  display: flex;
+  gap: 40px;
+  margin-top: 36px;
+  padding-top: 32px;
+  border-top: 1px solid var(--moondae-beige);
+}
+.ab-stat__value {
+  display: block;
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--moondae-brown);
+  margin-bottom: 4px;
+}
+.ab-stat__label {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+/* ── Behind the Name ──────────────────────────────── */
+.ab-name {
+  padding: 96px 0;
+  background: var(--moondae-navy);
+}
+.ab-name .container { max-width: 680px; }
+.ab-name__heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3rem);
+  color: #fff;
+  margin-bottom: 32px;
+  line-height: 1.2;
+}
+.ab-name__text {
+  color: rgba(255,255,255,0.75);
+  font-size: 1rem;
+  line-height: 1.85;
+  margin-bottom: 16px;
+}
+.ab-name__text--italic {
+  font-style: italic;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.9375rem;
+}
+.ab-name .ab-eyebrow { margin-bottom: 20px; }
+
+/* ── CTA ──────────────────────────────────────────── */
+.ab-cta { padding: 96px 0; background: var(--bg); }
+.ab-cta__heading {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  color: var(--moondae-brown);
+  margin-bottom: 12px;
+}
+.ab-cta__text {
+  color: var(--text-secondary);
+  max-width: 480px;
+  margin: 0 auto 32px;
+  line-height: 1.7;
+}
+.ab-cta__btns {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 768px) {
+  .ab-hero { min-height: 50vh; padding-bottom: 56px; }
+  .ab-section { padding: 56px 0; }
+  .ab-split { grid-template-columns: 1fr; gap: 32px; }
+  .ab-split--reverse .ab-split__img { order: 0; }
+  .ab-split--reverse .ab-split__text { order: 0; }
+  .ab-values { grid-template-columns: 1fr; }
+  .ab-stats { gap: 24px; flex-wrap: wrap; }
+  .ab-name { padding: 64px 0; }
+  .ab-cta { padding: 64px 0; }
+}
+</style>
+
 {% schema %}
 {
-  "name": "Cerita Kami",
+  "name": "About Us",
   "settings": [
-    {
-      "type": "text",
-      "id": "eyebrow",
-      "label": "Hero eyebrow",
-      "default": "TENTANG MOONDAE"
-    },
-    {
-      "type": "text",
-      "id": "hero_heading",
-      "label": "Hero headline",
-      "default": "Dirancang dengan hati, hadir untuk keseharianmu"
-    },
-    {
-      "type": "textarea",
-      "id": "hero_description",
-      "label": "Hero deskripsi",
-      "default": "Sebuah cerita tentang kesederhanaan, fungsi, dan kecintaan pada detail yang tidak terlihat tapi selalu terasa."
-    },
-    { "type": "header", "content": "CTA Section" },
-    {
-      "type": "text",
-      "id": "cta_heading",
-      "label": "CTA heading",
-      "default": "Mulai Perjalananmu dengan Moondae"
-    },
-    {
-      "type": "textarea",
-      "id": "cta_text",
-      "label": "CTA deskripsi",
-      "default": "Temukan tas yang bekerja sekeras kamu, tanpa mengorbankan gaya."
-    },
-    {
-      "type": "text",
-      "id": "cta_button_1",
-      "label": "Tombol 1",
-      "default": "Jelajahi Koleksi"
-    },
-    { "type": "url", "id": "cta_url_1", "label": "Link tombol 1" },
-    {
-      "type": "text",
-      "id": "cta_button_2",
-      "label": "Tombol 2",
-      "default": "Gabung Moonbae Circle"
-    },
-    { "type": "url", "id": "cta_url_2", "label": "Link tombol 2" }
+    { "type": "header", "content": "Images (optional)" },
+    { "type": "image_picker", "id": "img_origin", "label": "Origin Story — Image" },
+    { "type": "image_picker", "id": "img_philosophy", "label": "Philosophy — Image" },
+    { "type": "image_picker", "id": "img_production", "label": "Production — Image" }
   ],
-  "blocks": [
-    {
-      "type": "story_split",
-      "name": "Story Split",
-      "settings": [
-        { "type": "image_picker", "id": "image", "label": "Gambar" },
-        { "type": "text", "id": "eyebrow", "label": "Label atas", "default": "AWAL MULA" },
-        { "type": "text", "id": "heading", "label": "Judul" },
-        { "type": "textarea", "id": "text", "label": "Paragraf 1" },
-        { "type": "textarea", "id": "text_2", "label": "Paragraf 2" },
-        { "type": "textarea", "id": "quote", "label": "Kutipan (opsional)" },
-        { "type": "checkbox", "id": "reverse", "label": "Balik posisi (gambar kanan)", "default": false }
-      ]
-    },
-    {
-      "type": "values",
-      "name": "Brand Values",
-      "limit": 1,
-      "settings": [
-        { "type": "text", "id": "eyebrow", "label": "Label atas", "default": "YANG KAMI PERCAYA" },
-        { "type": "text", "id": "heading", "label": "Judul", "default": "Nilai-nilai Moondae" },
-        { "type": "text", "id": "subheading", "label": "Subjudul", "default": "Tiga prinsip yang mendasari setiap keputusan kami — dari desain hingga pelayanan." },
-        { "type": "text", "id": "value_1_title", "label": "Value 1 judul", "default": "Effortless Elegance" },
-        { "type": "textarea", "id": "value_1_text", "label": "Value 1 teks", "default": "Keindahan yang tidak membutuhkan usaha berlebihan." },
-        { "type": "text", "id": "value_2_title", "label": "Value 2 judul", "default": "Modern yet Understated" },
-        { "type": "textarea", "id": "value_2_text", "label": "Value 2 teks", "default": "Mengikuti perkembangan tren tanpa terjebak di dalamnya." },
-        { "type": "text", "id": "value_3_title", "label": "Value 3 judul", "default": "Accessible Luxury" },
-        { "type": "textarea", "id": "value_3_text", "label": "Value 3 teks", "default": "Kualitas premium seharusnya bukan hak eksklusif." }
-      ]
-    }
-  ]
+  "presets": [{ "name": "About Us" }]
 }
 {% endschema %}

@@ -6,13 +6,11 @@
 
 <section class="new-arrivals-section">
   <div class="container">
-    <div class="section-header">
-      <div>
-        <h2 class="section-title">{{ section.settings.heading }}</h2>
-        <p class="section-sub">{{ section.settings.subheading }}</p>
-      </div>
+    <div class="na-header">
+      <h2 class="section-title">{{ section.settings.heading }}</h2>
+      <p class="section-sub">{{ section.settings.subheading }}</p>
       {%- if collection != blank -%}
-        <a href="{{ collection.url }}" class="see-all">Lihat Semua</a>
+        <a href="{{ collection.url }}" class="see-all">See All</a>
       {%- endif -%}
     </div>
 
@@ -40,6 +38,16 @@
     </div>
   </div>
 </section>
+
+<style>
+.na-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.na-header .section-sub {
+  margin-bottom: 0;
+}
+</style>
 
 {% schema %}
 {

@@ -1,0 +1,58 @@
+{%- comment -%}
+  MOONDAE — Brand Statement
+  Full-width centered text block
+{%- endcomment -%}
+
+<section class="brand-stmt">
+  <div class="brand-stmt__inner">
+    <h2 class="brand-stmt__heading">Never Overpowering<br>But Always Present</h2>
+    <p class="brand-stmt__body">Moondae is a modern handbag brand inspired by Korean minimalism,<br class="br-desk"> designed for women navigating daily life with confidence and ease. Crafted<br class="br-desk"> with purpose, each bag is made to move effortlessly with your lifestyle.<br>Accessible luxury.</p>
+  </div>
+</section>
+
+<style>
+.brand-stmt {
+  padding: 80px 24px;
+  background: var(--bg);
+  text-align: center;
+}
+
+.brand-stmt__inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.brand-stmt__heading {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 600;
+  line-height: 1.15;
+  color: var(--moondae-brown);
+  margin-bottom: 28px;
+}
+
+.brand-stmt__body {
+  font-family: var(--font-sans);
+  font-size: clamp(0.875rem, 1.5vw, 1rem);
+  font-weight: 400;
+  line-height: 1.85;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 640px) {
+  .brand-stmt { padding: 56px 24px; }
+  .br-desk { display: none; }
+}
+</style>
+
+{% schema %}
+{
+  "name": "Brand Statement",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Brand Statement"
+    }
+  ]
+}
+{% endschema %}

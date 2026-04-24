@@ -52,24 +52,5 @@
       {%- endif -%}
     </p>
 
-    {%- comment -%} Color dots from variants {%- endcomment -%}
-    {%- assign color_option = product.options_by_name['Warna'] | default: product.options_by_name['Color'] -%}
-    {%- if color_option != blank -%}
-      <div class="color-dots">
-        {%- for value in color_option.values -%}
-          {%- assign handle = value | handle -%}
-          {%- case handle -%}
-            {%- when 'brown' or 'moondae-brown' -%}{%- assign dot_color = '#8B7355' -%}
-            {%- when 'navy' -%}{%- assign dot_color = '#232D3F' -%}
-            {%- when 'beige' or 'cream' -%}{%- assign dot_color = '#CDC3BD' -%}
-            {%- when 'black' -%}{%- assign dot_color = '#333333' -%}
-            {%- when 'grey' or 'gray' -%}{%- assign dot_color = '#999999' -%}
-            {%- when 'white' -%}{%- assign dot_color = '#F5F0EB' -%}
-            {%- else -%}{%- assign dot_color = '#B2998A' -%}
-          {%- endcase -%}
-          <span class="color-dot" style="background:{{ dot_color }}" title="{{ value }}"></span>
-        {%- endfor -%}
-      </div>
-    {%- endif -%}
   </div>
 </a>

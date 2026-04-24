@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp \"C:/Users/DELL/OneDrive/Documents/Shopify - Montana/montana-theme-mvp/assets/logo-shopee.png\" \"C:/Users/DELL/OneDrive/Documents/Shopify - Moondae New/assets/logo-shopee.png\")",
+      "Bash(cp \"C:/Users/DELL/OneDrive/Documents/Shopify - Montana/montana-theme-mvp/assets/logo-lazada.png\" \"C:/Users/DELL/OneDrive/Documents/Shopify - Moondae New/assets/logo-lazada.png\")",
+      "Bash(cp \"C:/Users/DELL/OneDrive/Documents/Shopify - Montana/montana-theme-mvp/assets/logo-tiktok.png\" \"C:/Users/DELL/OneDrive/Documents/Shopify - Moondae New/assets/logo-tiktok.png\")",
+      "Bash(cp \"C:/Users/DELL/OneDrive/Documents/Shopify - Montana/montana-theme-mvp/assets/logo-tokopedia.png\" \"C:/Users/DELL/OneDrive/Documents/Shopify - Moondae New/assets/logo-tokopedia.png\")"
+    ]
+  }
+}
