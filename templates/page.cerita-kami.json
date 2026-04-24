@@ -3,48 +3,48 @@
     "main": {
       "type": "page-cerita-kami",
       "settings": {
-        "eyebrow": "TENTANG MOONDAE",
-        "hero_heading": "Dirancang dengan hati, hadir untuk keseharianmu",
-        "hero_description": "Sebuah cerita tentang kesederhanaan, fungsi, dan kecintaan pada detail yang tidak terlihat tapi selalu terasa.",
-        "cta_heading": "Mulai Perjalananmu dengan Moondae",
-        "cta_text": "Temukan tas yang bekerja sekeras kamu, tanpa mengorbankan gaya.",
-        "cta_button_1": "Jelajahi Koleksi",
-        "cta_button_2": "Gabung Moonbae Circle"
+        "eyebrow": "ABOUT MOONDAE",
+        "hero_heading": "Designed with heart, present for your daily life",
+        "hero_description": "A story about simplicity, function, and love for details that are invisible but always felt.",
+        "cta_heading": "Start Your Journey with Moondae",
+        "cta_text": "Find the bag that works as hard as you do, without sacrificing style.",
+        "cta_button_1": "Explore Collection",
+        "cta_button_2": "Join Moonbae Circle"
       },
       "blocks": {
         "origin": {
           "type": "story_split",
           "settings": {
-            "eyebrow": "AWAL MULA",
-            "heading": "Lahir dari rasa frustasi terhadap pilihan yang ada",
-            "text": "Moondae dimulai pada 2022, ketika pendirinya — seorang wanita muda yang bekerja di industri kreatif Jakarta — kesulitan menemukan tas yang benar-benar memenuhi kebutuhannya.",
-            "text_2": "Tas-tas import Korea yang ia temukan terasa tepat secara desain, tapi harganya jauh di luar jangkauan. Tas lokal yang terjangkau sering kali mengorbankan estetika. Di sinilah Moondae menemukan celahnya.",
-            "quote": "\"Saya ingin membuat tas yang terasa seperti produk Korea premium, tapi dibuat dan dijual di Indonesia — dengan harga yang masuk akal.\"",
+            "eyebrow": "THE BEGINNING",
+            "heading": "Born from frustration with existing choices",
+            "text": "Moondae started in 2022, when its founder — a young woman working in Jakarta's creative industry — struggled to find a bag that truly met her needs.",
+            "text_2": "The imported Korean bags she found felt right in design, but their prices were far out of reach. Affordable local bags often sacrificed aesthetics. This is where Moondae found its gap.",
+            "quote": "\"I wanted to create bags that feel like premium Korean products, but are made and sold in Indonesia — with a reasonable price.\"",
             "reverse": false
           }
         },
         "philosophy": {
           "type": "story_split",
           "settings": {
-            "eyebrow": "FILOSOFI",
-            "heading": "Function meets style — tanpa kompromi",
-            "text": "Setiap tas Moondae dirancang dengan satu pertanyaan: \"Apakah ini benar-benar dibutuhkan?\" Tidak ada elemen dekoratif tanpa fungsi. Tidak ada tren yang diikuti tanpa alasan.",
-            "text_2": "Hasilnya adalah produk yang bisa diandalkan setiap hari — cukup elegan untuk meeting, cukup kasual untuk weekend, dan cukup versatile untuk keduanya.",
+            "eyebrow": "PHILOSOPHY",
+            "heading": "Function meets style — without compromise",
+            "text": "Every Moondae bag is designed with one question: \"Is this truly needed?\" No decorative elements without function. No trends followed without reason.",
+            "text_2": "The result is a product you can rely on every day — elegant enough for meetings, casual enough for weekends, and versatile enough for both.",
             "reverse": true
           }
         },
         "values": {
           "type": "values",
           "settings": {
-            "eyebrow": "YANG KAMI PERCAYA",
-            "heading": "Nilai-nilai Moondae",
-            "subheading": "Tiga prinsip yang mendasari setiap keputusan kami — dari desain hingga pelayanan.",
+            "eyebrow": "WHAT WE BELIEVE",
+            "heading": "Moondae Values",
+            "subheading": "Three principles underlying every decision we make — from design to service.",
             "value_1_title": "Effortless Elegance",
-            "value_1_text": "Keindahan yang tidak membutuhkan usaha berlebihan. Desain yang bekerja untuk kamu, bukan sebaliknya.",
+            "value_1_text": "Beauty that doesn't require excessive effort. Design that works for you, not the other way around.",
             "value_2_title": "Modern yet Understated",
-            "value_2_text": "Mengikuti perkembangan tren tanpa terjebak di dalamnya. Relevan hari ini, tetap relevan tahun depan.",
+            "value_2_text": "Following trend developments without getting trapped in them. Relevant today, still relevant next year.",
             "value_3_title": "Accessible Luxury",
-            "value_3_text": "Kualitas premium seharusnya bukan hak eksklusif. Kami percaya setiap wanita berhak merasakan produk yang benar-benar baik."
+            "value_3_text": "Premium quality should not be an exclusive right. We believe every woman deserves to experience truly good products."
           }
         }
       },
