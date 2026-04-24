@@ -1,0 +1,55 @@
+{
+  "sections": {
+    "main": {
+      "type": "page-cerita-kami",
+      "settings": {
+        "eyebrow": "TENTANG MOONDAE",
+        "hero_heading": "Dirancang dengan hati, hadir untuk keseharianmu",
+        "hero_description": "Sebuah cerita tentang kesederhanaan, fungsi, dan kecintaan pada detail yang tidak terlihat tapi selalu terasa.",
+        "cta_heading": "Mulai Perjalananmu dengan Moondae",
+        "cta_text": "Temukan tas yang bekerja sekeras kamu, tanpa mengorbankan gaya.",
+        "cta_button_1": "Jelajahi Koleksi",
+        "cta_button_2": "Gabung Moonbae Circle"
+      },
+      "blocks": {
+        "origin": {
+          "type": "story_split",
+          "settings": {
+            "eyebrow": "AWAL MULA",
+            "heading": "Lahir dari rasa frustasi terhadap pilihan yang ada",
+            "text": "Moondae dimulai pada 2022, ketika pendirinya — seorang wanita muda yang bekerja di industri kreatif Jakarta — kesulitan menemukan tas yang benar-benar memenuhi kebutuhannya.",
+            "text_2": "Tas-tas import Korea yang ia temukan terasa tepat secara desain, tapi harganya jauh di luar jangkauan. Tas lokal yang terjangkau sering kali mengorbankan estetika. Di sinilah Moondae menemukan celahnya.",
+            "quote": "\"Saya ingin membuat tas yang terasa seperti produk Korea premium, tapi dibuat dan dijual di Indonesia — dengan harga yang masuk akal.\"",
+            "reverse": false
+          }
+        },
+        "philosophy": {
+          "type": "story_split",
+          "settings": {
+            "eyebrow": "FILOSOFI",
+            "heading": "Function meets style — tanpa kompromi",
+            "text": "Setiap tas Moondae dirancang dengan satu pertanyaan: \"Apakah ini benar-benar dibutuhkan?\" Tidak ada elemen dekoratif tanpa fungsi. Tidak ada tren yang diikuti tanpa alasan.",
+            "text_2": "Hasilnya adalah produk yang bisa diandalkan setiap hari — cukup elegan untuk meeting, cukup kasual untuk weekend, dan cukup versatile untuk keduanya.",
+            "reverse": true
+          }
+        },
+        "values": {
+          "type": "values",
+          "settings": {
+            "eyebrow": "YANG KAMI PERCAYA",
+            "heading": "Nilai-nilai Moondae",
+            "subheading": "Tiga prinsip yang mendasari setiap keputusan kami — dari desain hingga pelayanan.",
+            "value_1_title": "Effortless Elegance",
+            "value_1_text": "Keindahan yang tidak membutuhkan usaha berlebihan. Desain yang bekerja untuk kamu, bukan sebaliknya.",
+            "value_2_title": "Modern yet Understated",
+            "value_2_text": "Mengikuti perkembangan tren tanpa terjebak di dalamnya. Relevan hari ini, tetap relevan tahun depan.",
+            "value_3_title": "Accessible Luxury",
+            "value_3_text": "Kualitas premium seharusnya bukan hak eksklusif. Kami percaya setiap wanita berhak merasakan produk yang benar-benar baik."
+          }
+        }
+      },
+      "block_order": ["origin", "philosophy", "values"]
+    }
+  },
+  "order": ["main"]
+}

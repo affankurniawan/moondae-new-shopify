@@ -1,0 +1,166 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Moondae",
+    "theme_version": "1.0.0",
+    "theme_author": "Moondae Brand Team",
+    "theme_support_url": "https://moondae.com",
+    "theme_documentation_url": "https://moondae.com"
+  },
+  {
+    "name": "Brand",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon"
+      },
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo",
+        "info": "Disarankan tinggi 40px"
+      },
+      {
+        "type": "text",
+        "id": "brand_name",
+        "label": "Nama brand",
+        "default": "Moondae"
+      },
+      {
+        "type": "text",
+        "id": "brand_tagline",
+        "label": "Tagline",
+        "default": "since 2022"
+      }
+    ]
+  },
+  {
+    "name": "Warna",
+    "settings": [
+      {
+        "type": "color",
+        "id": "color_brown",
+        "label": "Moondae Brown (Primary)",
+        "default": "#695242"
+      },
+      {
+        "type": "color",
+        "id": "color_light_brown",
+        "label": "Moondae Light Brown",
+        "default": "#B2998A"
+      },
+      {
+        "type": "color",
+        "id": "color_beige",
+        "label": "Moondae Beige",
+        "default": "#CDC3BD"
+      },
+      {
+        "type": "color",
+        "id": "color_off_white",
+        "label": "Moondae Off-White",
+        "default": "#E5E0D6"
+      },
+      {
+        "type": "color",
+        "id": "color_navy",
+        "label": "Moondae Navy",
+        "default": "#232D3F"
+      },
+      {
+        "type": "color",
+        "id": "color_gold",
+        "label": "Moondae Gold",
+        "default": "#F8CF40"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background",
+        "default": "#F9F6F2"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text Primary",
+        "default": "#333333"
+      },
+      {
+        "type": "color",
+        "id": "color_text_secondary",
+        "label": "Text Secondary",
+        "default": "#666666"
+      }
+    ]
+  },
+  {
+    "name": "Marketplace",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "enable_marketplace",
+        "label": "Tampilkan tombol marketplace di halaman produk",
+        "default": true
+      },
+      {
+        "type": "url",
+        "id": "tokopedia_store_url",
+        "label": "Link Toko Tokopedia"
+      },
+      {
+        "type": "url",
+        "id": "shopee_store_url",
+        "label": "Link Toko Shopee"
+      }
+    ]
+  },
+  {
+    "name": "Social Media",
+    "settings": [
+      {
+        "type": "text",
+        "id": "social_instagram",
+        "label": "Instagram handle",
+        "default": "@moondae.official"
+      },
+      {
+        "type": "url",
+        "id": "social_instagram_url",
+        "label": "Instagram URL"
+      },
+      {
+        "type": "url",
+        "id": "social_tiktok_url",
+        "label": "TikTok URL"
+      },
+      {
+        "type": "url",
+        "id": "social_whatsapp_url",
+        "label": "WhatsApp URL",
+        "info": "Format: https://wa.me/628xxx"
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Tipe keranjang",
+        "options": [
+          {
+            "value": "drawer",
+            "label": "Slide-out drawer"
+          },
+          {
+            "value": "page",
+            "label": "Halaman terpisah"
+          }
+        ],
+        "default": "drawer"
+      }
+    ]
+  }
+]

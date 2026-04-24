@@ -1,0 +1,117 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner",
+      "blocks": {
+        "slide_1": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "KOLEKSI TERBARU 2026",
+            "heading": "Quiet Elegance, Everyday Presence",
+            "description": "Tas yang dirancang untuk wanita yang tahu apa yang ia inginkan — elegan tanpa berlebihan.",
+            "button_text": "Jelajahi Koleksi",
+            "button_text_2": "Kenali Kami"
+          }
+        },
+        "slide_2": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "FUNCTION MEETS STYLE",
+            "heading": "Satu Tas, Banyak Cerita",
+            "description": "Koleksi versatile yang menemani setiap momen — dari meeting pagi hingga dinner malam.",
+            "button_text": "Lihat Koleksi"
+          }
+        },
+        "slide_3": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "MOONBAE CIRCLE",
+            "heading": "Bergabunglah dengan Kami",
+            "description": "Dapatkan early access, diskon eksklusif, dan styling tips mingguan.",
+            "button_text": "Gabung Sekarang"
+          }
+        }
+      },
+      "block_order": ["slide_1", "slide_2", "slide_3"]
+    },
+    "tagline": {
+      "type": "tagline-strip",
+      "blocks": {
+        "t1": { "type": "tagline", "settings": { "text": "NEVER OVERPOWERING BUT ALWAYS PRESENT" } },
+        "t2": { "type": "tagline", "settings": { "text": "FUNCTION MEETS STYLE" } },
+        "t3": { "type": "tagline", "settings": { "text": "DIBUAT DENGAN HATI DI INDONESIA" } },
+        "t4": { "type": "tagline", "settings": { "text": "KOREAN MINIMALIST AESTHETICS" } }
+      },
+      "block_order": ["t1", "t2", "t3", "t4"]
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": {
+        "heading": "Koleksi Unggulan",
+        "subheading": "Pilihan terbaik yang paling dicintai",
+        "limit": 8
+      }
+    },
+    "new_arrivals": {
+      "type": "new-arrivals",
+      "settings": {
+        "heading": "Baru Tiba",
+        "subheading": "Koleksi terbaru yang baru saja hadir",
+        "limit": 8
+      }
+    },
+    "brand_story": {
+      "type": "brand-story-snippet",
+      "settings": {
+        "eyebrow": "TENTANG MOONDAE",
+        "heading": "Function Meets Style",
+        "text": "Moondae lahir dari keyakinan sederhana: setiap wanita berhak memiliki tas yang bekerja sekeras dirinya, tanpa mengorbankan estetika.",
+        "text_2": "Setiap produk Moondae dirancang dengan filosofi \"function meets style\": tidak berlebihan, selalu hadir di momen yang tepat, dan bertahan lebih lama dari tren.",
+        "button_text": "Kenali Kami Lebih Dekat"
+      }
+    },
+    "bestsellers": {
+      "type": "bestsellers",
+      "settings": {
+        "heading": "Bestseller",
+        "subheading": "Yang paling banyak dicintai",
+        "limit": 3
+      }
+    },
+    "instagram": {
+      "type": "instagram-feed",
+      "settings": {
+        "subheading": "Tag foto kamu dengan #MoondaeMoment"
+      },
+      "blocks": {
+        "ig1": { "type": "photo" },
+        "ig2": { "type": "photo" },
+        "ig3": { "type": "photo" },
+        "ig4": { "type": "photo" },
+        "ig5": { "type": "photo" },
+        "ig6": { "type": "photo" }
+      },
+      "block_order": ["ig1", "ig2", "ig3", "ig4", "ig5", "ig6"]
+    },
+    "moonbae_cta": {
+      "type": "moonbae-circle-cta",
+      "blocks": {
+        "b1": { "type": "benefit", "settings": { "text": "Early access" } },
+        "b2": { "type": "benefit", "settings": { "text": "Diskon 10% pertama" } },
+        "b3": { "type": "benefit", "settings": { "text": "Styling tips mingguan" } },
+        "b4": { "type": "benefit", "settings": { "text": "Event eksklusif" } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4"]
+    }
+  },
+  "order": [
+    "hero",
+    "tagline",
+    "featured",
+    "new_arrivals",
+    "brand_story",
+    "bestsellers",
+    "instagram",
+    "moonbae_cta"
+  ]
+}

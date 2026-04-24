@@ -1,0 +1,80 @@
+{%- comment -%}
+  MOONDAE — Instagram Feed Grid
+{%- endcomment -%}
+
+<section class="instagram-section">
+  <div class="container">
+    <h2 class="section-title">{{ settings.social_instagram | default: '@moondae.official' }}</h2>
+    <p class="section-sub">{{ section.settings.subheading }}</p>
+  </div>
+
+  <div class="instagram-grid">
+    {%- for block in section.blocks -%}
+      <a
+        href="{{ settings.social_instagram_url | default: '#' }}"
+        class="instagram-item"
+        target="_blank"
+        rel="noopener"
+        {{ block.shopify_attributes }}
+      >
+        {%- if block.settings.image != blank -%}
+          <img
+            src="{{ block.settings.image | image_url: width: 400 }}"
+            alt="Instagram post"
+            loading="lazy"
+            width="400"
+            height="400"
+          >
+        {%- else -%}
+          <div class="ig-placeholder"></div>
+        {%- endif -%}
+        <div class="ig-overlay">
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="5"/></svg>
+        </div>
+      </a>
+    {%- endfor -%}
+  </div>
+
+  <p class="ig-handle">Ikuti kami di <a href="{{ settings.social_instagram_url | default: '#' }}" target="_blank" rel="noopener">{{ settings.social_instagram | default: '@moondae.official' }}</a></p>
+</section>
+
+{% schema %}
+{
+  "name": "Instagram Feed",
+  "settings": [
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subjudul",
+      "default": "Tag foto kamu dengan #MoondaeMoment"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "photo",
+      "name": "Foto",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Foto Instagram"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "presets": [
+    {
+      "name": "Instagram Feed",
+      "blocks": [
+        { "type": "photo" },
+        { "type": "photo" },
+        { "type": "photo" },
+        { "type": "photo" },
+        { "type": "photo" },
+        { "type": "photo" }
+      ]
+    }
+  ]
+}
+{% endschema %}

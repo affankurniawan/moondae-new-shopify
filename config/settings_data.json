@@ -1,0 +1,21 @@
+{
+  "current": {
+    "color_brown": "#695242",
+    "color_light_brown": "#B2998A",
+    "color_beige": "#CDC3BD",
+    "color_off_white": "#E5E0D6",
+    "color_navy": "#232D3F",
+    "color_gold": "#F8CF40",
+    "color_background": "#F9F6F2",
+    "color_text": "#333333",
+    "color_text_secondary": "#666666",
+    "brand_name": "Moondae",
+    "brand_tagline": "",
+    "enable_marketplace": true,
+    "cart_type": "drawer",
+    "social_instagram": "@moondae.official",
+    "sections": {},
+    "content_for_header": [],
+    "content_for_index": []
+  }
+}

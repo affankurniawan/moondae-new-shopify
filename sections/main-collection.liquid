@@ -1,0 +1,106 @@
+{%- comment -%}
+  MOONDAE — Collection / Product Listing Page
+{%- endcomment -%}
+
+{%- paginate collection.products by section.settings.products_per_page -%}
+
+{%- comment -%} Page Hero {%- endcomment -%}
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="/">Beranda</a>
+      <span>/</span>
+      <span>{{ collection.title }}</span>
+    </div>
+    <h1>{{ collection.title }}</h1>
+    {%- if collection.description != blank -%}
+      <p>{{ collection.description }}</p>
+    {%- else -%}
+      <p>Temukan tas yang tepat untuk setiap momen</p>
+    {%- endif -%}
+  </div>
+</div>
+
+{%- comment -%} Filter & Sort Bar {%- endcomment -%}
+<div class="collection-layout">
+  <div class="container">
+    <div class="filter-bar">
+      <div class="filter-tags">
+        <a href="{{ collection.url }}" class="filter-tag{% unless current_tags %} active{% endunless %}">
+          Semua Tas
+        </a>
+        {%- for tag in collection.all_tags -%}
+          {%- if tag contains 'Tipe:' -%}
+            {%- assign clean_tag = tag | remove: 'Tipe:' -%}
+            <a href="{{ collection.url }}/{{ tag | handle }}" class="filter-tag{% if current_tags contains tag %} active{% endif %}">
+              {{ clean_tag }}
+            </a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      <div style="display:flex; align-items:center; gap:16px;">
+        <span class="results-count">{{ collection.products_count }} produk</span>
+        <select class="sort-select" onchange="window.location.href=this.value">
+          {%- for option in collection.sort_options -%}
+            <option
+              value="{{ collection.url }}?sort_by={{ option.value }}"
+              {% if collection.sort_by == option.value %}selected{% endif %}
+            >
+              {{ option.name }}
+            </option>
+          {%- endfor -%}
+        </select>
+      </div>
+    </div>
+
+    {%- comment -%} Product Grid {%- endcomment -%}
+    <div class="product-grid">
+      {%- for product in collection.products -%}
+        {% render 'product-card', product: product %}
+      {%- else -%}
+        <div style="grid-column: 1/-1; text-align:center; padding:80px 0;">
+          <p style="color: var(--text-secondary); font-size:1.1rem;">Belum ada produk di kategori ini.</p>
+          <a href="/collections/all" class="btn btn-secondary" style="margin-top:20px;">Lihat Semua Koleksi</a>
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- comment -%} Pagination {%- endcomment -%}
+    {%- if paginate.pages > 1 -%}
+      <nav class="pagination" style="display:flex; justify-content:center; gap:8px; padding:48px 0;">
+        {%- if paginate.previous -%}
+          <a href="{{ paginate.previous.url }}" class="btn btn-sm btn-secondary">&laquo; Sebelumnya</a>
+        {%- endif -%}
+        {%- for part in paginate.parts -%}
+          {%- if part.is_link -%}
+            <a href="{{ part.url }}" class="btn btn-sm btn-secondary">{{ part.title }}</a>
+          {%- else -%}
+            <span class="btn btn-sm btn-primary">{{ part.title }}</span>
+          {%- endif -%}
+        {%- endfor -%}
+        {%- if paginate.next -%}
+          <a href="{{ paginate.next.url }}" class="btn btn-sm btn-secondary">Selanjutnya &raquo;</a>
+        {%- endif -%}
+      </nav>
+    {%- endif -%}
+  </div>
+</div>
+
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "Halaman Koleksi",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Produk per halaman",
+      "min": 8,
+      "max": 24,
+      "step": 4,
+      "default": 12
+    }
+  ]
+}
+{% endschema %}

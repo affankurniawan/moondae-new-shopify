@@ -1,0 +1,45 @@
+{%- comment -%}
+  MOONDAE — Search Results Page
+{%- endcomment -%}
+
+<div class="page-hero" style="padding:40px 0;">
+  <div class="container">
+    <h1>Hasil Pencarian</h1>
+    {%- if search.performed -%}
+      <p style="color:var(--text-secondary);">
+        {{ search.results_count }} hasil untuk "{{ search.terms }}"
+      </p>
+    {%- endif -%}
+  </div>
+</div>
+
+<div class="container" style="padding-bottom:80px;">
+  {%- if search.performed -%}
+    {%- if search.results_count > 0 -%}
+      <div class="product-grid">
+        {%- for item in search.results -%}
+          {%- if item.object_type == 'product' -%}
+            {% render 'product-card', product: item %}
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <div style="text-align:center; padding:60px 0;">
+        <p style="color:var(--text-secondary); font-size:1.1rem; margin-bottom:20px;">
+          Tidak ada hasil untuk "{{ search.terms }}"
+        </p>
+        <p style="color:var(--text-secondary); font-size:0.9rem; margin-bottom:24px;">
+          Coba kata kunci lain: "tote bag", "shoulder bag", "navy"
+        </p>
+        <a href="/collections/all" class="btn btn-primary">Lihat Semua Koleksi</a>
+      </div>
+    {%- endif -%}
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Pencarian",
+  "settings": []
+}
+{% endschema %}

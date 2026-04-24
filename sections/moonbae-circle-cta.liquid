@@ -1,0 +1,113 @@
+{%- comment -%}
+  MOONDAE — Moonbae Circle Newsletter CTA Strip
+{%- endcomment -%}
+
+<section class="moonbae-strip">
+  <div class="container">
+    <div class="moonbae-strip-inner">
+      <div class="moonbae-text">
+        <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+        <h2>{{ section.settings.heading }}</h2>
+        <p>{{ section.settings.description }}</p>
+        <div class="moonbae-benefits">
+          {%- for block in section.blocks -%}
+            <span class="moonbae-benefit" {{ block.shopify_attributes }}>{{ block.settings.text }}</span>
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <div class="moonbae-form">
+        {%- form 'customer', id: 'moonbae-newsletter' -%}
+          <input type="hidden" name="contact[tags]" value="moonbae-circle,newsletter">
+          <div class="email-form">
+            <input
+              type="email"
+              name="contact[email]"
+              placeholder="{{ section.settings.placeholder }}"
+              required
+              autocomplete="email"
+            >
+            <button type="submit">{{ section.settings.button_text }}</button>
+          </div>
+          {%- if form.posted_successfully? -%}
+            <p style="color: var(--moondae-gold); font-size: 0.875rem; margin-top: 8px;">
+              Selamat datang di Moonbae Circle! &#10022;
+            </p>
+          {%- endif -%}
+        {%- endform -%}
+        <p style="font-size: 0.75rem; color: rgba(255,255,255,0.4); margin-top: 8px;">
+          {{ section.settings.disclaimer }}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Moonbae Circle CTA",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Label atas",
+      "default": "MOONBAE CIRCLE"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Judul",
+      "default": "Gabung Moonbae Circle"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Deskripsi",
+      "default": "Bergabung dengan komunitas wanita yang menghargai keindahan dalam kesederhanaan. Dapatkan akses early, diskon member, dan konten styling setiap minggu."
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Placeholder email",
+      "default": "Alamat email kamu"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Teks tombol",
+      "default": "Gabung"
+    },
+    {
+      "type": "text",
+      "id": "disclaimer",
+      "label": "Disclaimer",
+      "default": "Dengan mendaftar, kamu menyetujui kebijakan privasi kami. Unsubscribe kapan saja."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Teks benefit",
+          "default": "Early access"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Moonbae Circle CTA",
+      "blocks": [
+        { "type": "benefit", "settings": { "text": "Early access" } },
+        { "type": "benefit", "settings": { "text": "Diskon 10% pertama" } },
+        { "type": "benefit", "settings": { "text": "Styling tips mingguan" } },
+        { "type": "benefit", "settings": { "text": "Event eksklusif" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

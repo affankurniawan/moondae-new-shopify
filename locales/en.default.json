@@ -1,0 +1,45 @@
+{
+  "general": {
+    "search": "Cari",
+    "cart": "Keranjang",
+    "account": "Akun",
+    "close": "Tutup",
+    "loading": "Memuat..."
+  },
+  "products": {
+    "add_to_cart": "Tambah ke Keranjang",
+    "sold_out": "Habis",
+    "unavailable": "Tidak tersedia",
+    "quantity": "Jumlah",
+    "quick_view": "Quick View"
+  },
+  "cart": {
+    "title": "Keranjang",
+    "empty": "Keranjang kamu masih kosong",
+    "subtotal": "Subtotal",
+    "checkout": "Checkout",
+    "shipping_note": "Ongkir dihitung saat checkout",
+    "continue_shopping": "Lanjut Belanja",
+    "remove": "Hapus",
+    "added_to_cart": "Ditambahkan ke keranjang"
+  },
+  "collections": {
+    "all": "Semua Koleksi",
+    "sort_by": "Urutkan",
+    "filter": "Filter",
+    "products_count": "{{ count }} produk"
+  },
+  "customer": {
+    "login": "Masuk",
+    "register": "Daftar",
+    "logout": "Keluar",
+    "account": "Akun Saya",
+    "orders": "Riwayat Pesanan",
+    "addresses": "Alamat"
+  },
+  "newsletter": {
+    "success": "Selamat datang di Moonbae Circle!",
+    "placeholder": "Alamat email kamu",
+    "submit": "Gabung"
+  }
+}

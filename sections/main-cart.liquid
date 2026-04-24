@@ -1,0 +1,69 @@
+{%- comment -%}
+  MOONDAE — Cart Page (fallback for non-drawer mode)
+{%- endcomment -%}
+
+<div class="page-hero" style="padding:40px 0;">
+  <div class="container">
+    <h1>Keranjang Belanja</h1>
+  </div>
+</div>
+
+<div class="container" style="padding-bottom:80px;">
+  {%- if cart.item_count > 0 -%}
+    <form action="{{ routes.cart_url }}" method="post">
+      {%- for item in cart.items -%}
+        <div class="cart-item" style="display:flex; gap:20px; padding:20px 0; border-bottom:1px solid var(--moondae-beige);">
+          <div style="width:120px; height:150px; background:var(--moondae-beige); border-radius:var(--radius-sm); overflow:hidden; flex-shrink:0;">
+            {%- if item.image != blank -%}
+              <img src="{{ item.image | image_url: width: 240 }}" alt="{{ item.title | escape }}" style="width:100%; height:100%; object-fit:cover;">
+            {%- endif -%}
+          </div>
+          <div style="flex:1;">
+            <h3 style="font-size:1rem; margin-bottom:4px;">
+              <a href="{{ item.url }}">{{ item.product.title }}</a>
+            </h3>
+            {%- unless item.variant.title == 'Default Title' -%}
+              <p style="font-size:0.85rem; color:var(--text-secondary); margin-bottom:12px;">{{ item.variant.title }}</p>
+            {%- endunless -%}
+            <p style="font-size:1rem; font-weight:600; color:var(--moondae-brown); margin-bottom:12px;">{{ item.final_line_price | money }}</p>
+            <div style="display:flex; align-items:center; gap:12px;">
+              <label for="qty-{{ item.key }}" class="visually-hidden">Jumlah</label>
+              <input
+                type="number"
+                id="qty-{{ item.key }}"
+                name="updates[]"
+                value="{{ item.quantity }}"
+                min="0"
+                style="width:60px; padding:8px; border:1px solid var(--moondae-beige); border-radius:var(--radius-sm); text-align:center; font-family:var(--font-sans);"
+              >
+              <a href="{{ routes.cart_change_url }}?id={{ item.key }}&quantity=0" style="font-size:0.8rem; color:var(--text-secondary);">Hapus</a>
+            </div>
+          </div>
+        </div>
+      {%- endfor -%}
+
+      <div style="max-width:400px; margin-left:auto; padding-top:32px;">
+        <div style="display:flex; justify-content:space-between; margin-bottom:16px;">
+          <span style="font-size:1rem;">Subtotal</span>
+          <strong style="font-size:1.125rem; color:var(--moondae-brown);">{{ cart.total_price | money }}</strong>
+        </div>
+        <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:16px;">Ongkir dihitung saat checkout</p>
+        <button type="submit" name="update" class="btn btn-secondary btn-full" style="margin-bottom:8px;">Update Keranjang</button>
+        <button type="submit" name="checkout" class="btn btn-primary btn-full">Checkout</button>
+      </div>
+    </form>
+  {%- else -%}
+    <div style="text-align:center; padding:80px 0;">
+      <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24" style="margin-bottom:16px; opacity:0.3;"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+      <p style="color:var(--text-secondary); font-size:1.1rem; margin-bottom:20px;">Keranjang kamu masih kosong</p>
+      <a href="/collections/all" class="btn btn-primary">Mulai Belanja</a>
+    </div>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Halaman Keranjang",
+  "settings": []
+}
+{% endschema %}

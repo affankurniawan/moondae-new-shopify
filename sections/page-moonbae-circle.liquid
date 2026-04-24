@@ -1,0 +1,189 @@
+{%- comment -%}
+  MOONDAE — Moonbae Circle (Community Page)
+{%- endcomment -%}
+
+{%- comment -%} Hero {%- endcomment -%}
+<div class="moonbae-hero">
+  <p class="eyebrow">{{ section.settings.eyebrow }}</p>
+  <h1>{{ section.settings.heading }}</h1>
+  <p>{{ section.settings.description }}</p>
+  <a href="#moonbae-signup" class="btn btn-outline-white">{{ section.settings.hero_button }}</a>
+  <p style="font-size:0.8125rem; color:rgba(255,255,255,0.5); margin-top:12px;">{{ section.settings.social_proof }}</p>
+</div>
+
+{%- comment -%} Benefits {%- endcomment -%}
+<section class="benefits-section">
+  <div class="container" style="text-align:center;">
+    <p class="eyebrow" style="color:var(--moondae-light-brown); font-size:0.75rem; font-weight:500; letter-spacing:0.15em; text-transform:uppercase;">KEISTIMEWAAN MEMBER</p>
+    <h2 class="section-title">Yang kamu dapatkan sebagai Moonbae</h2>
+    <div class="benefits-grid">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'benefit' -%}
+          <div class="benefit-card" {{ block.shopify_attributes }}>
+            <div class="icon">{{ block.settings.icon }}</div>
+            <h3>{{ block.settings.title }}</h3>
+            <p>{{ block.settings.description }}</p>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{%- comment -%} Testimonials {%- endcomment -%}
+{%- assign testimonials = section.blocks | where: 'type', 'testimonial' -%}
+{%- if testimonials.size > 0 -%}
+  <section style="padding:60px 0; background:var(--moondae-white);">
+    <div class="container" style="text-align:center;">
+      <p class="eyebrow" style="color:var(--moondae-light-brown); font-size:0.75rem; font-weight:500; letter-spacing:0.15em; text-transform:uppercase;">KATA MEREKA</p>
+      <h2 class="section-title" style="margin-bottom:40px;">Cerita dari Moonbae</h2>
+      <div class="article-grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'testimonial' -%}
+            <div class="benefit-card" style="text-align:left; padding:28px;" {{ block.shopify_attributes }}>
+              <p style="font-size:1.5rem; color:var(--moondae-beige); line-height:1; margin-bottom:12px;">&ldquo;</p>
+              <p style="font-size:0.9rem; color:var(--text-secondary); line-height:1.7; margin-bottom:20px;">{{ block.settings.quote }}</p>
+              <div style="display:flex; align-items:center; gap:12px;">
+                {%- if block.settings.avatar != blank -%}
+                  <img src="{{ block.settings.avatar | image_url: width: 40 }}" alt="{{ block.settings.name }}" style="width:40px; height:40px; border-radius:50%; object-fit:cover;">
+                {%- else -%}
+                  <div style="width:40px; height:40px; border-radius:50%; background:var(--moondae-beige);"></div>
+                {%- endif -%}
+                <div>
+                  <p style="font-size:0.875rem; font-weight:600; color:var(--text-primary);">{{ block.settings.name }}</p>
+                  <p style="font-size:0.75rem; color:var(--text-secondary);">{{ block.settings.role }}</p>
+                </div>
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{%- comment -%} Signup Form {%- endcomment -%}
+<section class="signup-section" id="moonbae-signup">
+  <div class="signup-box">
+    <h2>{{ section.settings.signup_heading }}</h2>
+    <p>{{ section.settings.signup_text }}</p>
+
+    {%- form 'customer', id: 'moonbae-signup-form', class: 'signup-form' -%}
+      <input type="hidden" name="contact[tags]" value="moonbae-circle,newsletter">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="signup-first-name">Nama Depan</label>
+          <input type="text" id="signup-first-name" name="customer[first_name]" placeholder="Nama depan" required>
+        </div>
+        <div class="form-group">
+          <label for="signup-last-name">Nama Belakang</label>
+          <input type="text" id="signup-last-name" name="customer[last_name]" placeholder="Nama belakang">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="signup-email">Email</label>
+        <input type="email" id="signup-email" name="customer[email]" placeholder="email@contoh.com" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-full" style="margin-top:8px;">Gabung Moonbae Circle</button>
+
+      {%- if form.posted_successfully? -%}
+        <p style="color:var(--moondae-brown); font-size:0.9rem; margin-top:12px; text-align:center;">
+          Selamat datang di Moonbae Circle! &#10022; Cek email kamu untuk konfirmasi.
+        </p>
+      {%- endif -%}
+      {%- if form.errors -%}
+        <p style="color:#c0392b; font-size:0.85rem; margin-top:8px;">
+          {{ form.errors | default_errors }}
+        </p>
+      {%- endif -%}
+    {%- endform -%}
+  </div>
+</section>
+
+{%- comment -%} Content / Articles {%- endcomment -%}
+{%- assign articles_blocks = section.blocks | where: 'type', 'article' -%}
+{%- if articles_blocks.size > 0 -%}
+  <section class="content-section">
+    <div class="container" style="text-align:center;">
+      <p class="eyebrow" style="color:var(--moondae-light-brown); font-size:0.75rem; font-weight:500; letter-spacing:0.15em; text-transform:uppercase;">KONTEN EKSKLUSIF</p>
+      <h2 class="section-title">Dari Moonbae, untuk Moonbae</h2>
+      <div class="article-grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'article' -%}
+            <div class="article-card" {{ block.shopify_attributes }}>
+              <div class="article-card-img">
+                {%- if block.settings.image != blank -%}
+                  <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.title }}" loading="lazy">
+                {%- endif -%}
+              </div>
+              <p class="tag">{{ block.settings.tag }}</p>
+              <h3>{{ block.settings.title }}</h3>
+              <p>{{ block.settings.excerpt }}</p>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Moonbae Circle",
+  "settings": [
+    { "type": "header", "content": "Hero" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "✦ EKSKLUSIF UNTUK KAMU" },
+    { "type": "text", "id": "heading", "label": "Judul", "default": "Moonbae Circle" },
+    { "type": "textarea", "id": "description", "label": "Deskripsi", "default": "Komunitas wanita yang menghargai keindahan dalam kesederhanaan. Bergabung gratis, nikmati berbagai keistimewaan." },
+    { "type": "text", "id": "hero_button", "label": "Teks tombol", "default": "Gabung Sekarang — Gratis" },
+    { "type": "text", "id": "social_proof", "label": "Social proof", "default": "Sudah 3.200+ member bergabung" },
+    { "type": "header", "content": "Signup Section" },
+    { "type": "text", "id": "signup_heading", "label": "Judul signup", "default": "Bergabung dengan Moonbae Circle" },
+    { "type": "textarea", "id": "signup_text", "label": "Deskripsi signup", "default": "Gratis selamanya. Unsubscribe kapan saja. Tidak ada spam — hanya konten yang benar-benar kamu butuhkan." }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Icon (emoji/symbol)", "default": "⚡" },
+        { "type": "text", "id": "title", "label": "Judul", "default": "Early Access" },
+        { "type": "textarea", "id": "description", "label": "Deskripsi", "default": "Akses koleksi baru 24 jam lebih awal dari publik umum." }
+      ]
+    },
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        { "type": "textarea", "id": "quote", "label": "Kutipan" },
+        { "type": "text", "id": "name", "label": "Nama", "default": "Nadia Rahmawati" },
+        { "type": "text", "id": "role", "label": "Profesi & Kota", "default": "Desainer Grafis, Jakarta" },
+        { "type": "image_picker", "id": "avatar", "label": "Foto profil" }
+      ]
+    },
+    {
+      "type": "article",
+      "name": "Artikel",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Gambar" },
+        { "type": "text", "id": "tag", "label": "Kategori", "default": "STYLING TIPS" },
+        { "type": "text", "id": "title", "label": "Judul" },
+        { "type": "textarea", "id": "excerpt", "label": "Ringkasan" }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "benefit", "settings": { "icon": "⚡", "title": "Early Access", "description": "Akses koleksi baru 24 jam lebih awal dari publik umum." } },
+      { "type": "benefit", "settings": { "icon": "♡", "title": "Diskon Eksklusif", "description": "Diskon 10% untuk pembelian pertama dan promo khusus member." } },
+      { "type": "benefit", "settings": { "icon": "📋", "title": "Styling Tips Mingguan", "description": "Konten eksklusif setiap minggu: cara pakai, inspirasi outfit, dan behind-the-scenes." } },
+      { "type": "benefit", "settings": { "icon": "👥", "title": "Event Eksklusif", "description": "Undangan ke pop-up store, trunk show, dan gathering Moonbae Circle." } },
+      { "type": "benefit", "settings": { "icon": "⏰", "title": "Flash Sale Prioritas", "description": "Akses ke flash sale dan penawaran terbatas 24 jam lebih awal." } },
+      { "type": "benefit", "settings": { "icon": "☆", "title": "Poin Reward", "description": "Kumpulkan poin dari setiap pembelian dan tukarkan dengan diskon." } },
+      { "type": "testimonial", "settings": { "quote": "Sejak gabung Moonbae Circle, saya selalu dapat info koleksi baru duluan. Udah 3 kali beli dan gak pernah kecewa.", "name": "Nadia Rahmawati", "role": "Desainer Grafis, Jakarta" } },
+      { "type": "testimonial", "settings": { "quote": "Komunitasnya warm banget. Sering share tips cara merawat tas, outfit ideas, dan sesekali ada giveaway juga.", "name": "Rina Maharani", "role": "Marketing Manager, Surabaya" } },
+      { "type": "testimonial", "settings": { "quote": "Dapat diskon 10% untuk pertama kali, terus setiap newsletter ada info produk baru yang menarik.", "name": "Sari Astuti", "role": "Mahasiswi, Yogyakarta" } }
+    ]
+  }
+}
+{% endschema %}

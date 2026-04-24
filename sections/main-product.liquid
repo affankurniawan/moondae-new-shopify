@@ -1,0 +1,351 @@
+{%- comment -%}
+  MOONDAE — Product Detail Page
+  Gallery + Info + Marketplace Bridge + Tabs
+{%- endcomment -%}
+
+<div class="container">
+  <div class="breadcrumb" style="padding-top:16px;">
+    <a href="/">Beranda</a>
+    <span>/</span>
+    <a href="{{ product.collections.first.url }}">{{ product.collections.first.title | default: 'Koleksi' }}</a>
+    <span>/</span>
+    <a href="{{ product.type | url_for_type }}">{{ product.type }}</a>
+    <span>/</span>
+    <span>{{ product.title }}</span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="pdp-layout">
+
+    {%- comment -%} ===== GALLERY ===== {%- endcomment -%}
+    <div class="pdp-gallery" data-pdp-gallery>
+      <div class="gallery-main" id="gallery-main">
+        {%- if product.featured_image != blank -%}
+          <img
+            src="{{ product.featured_image | image_url: width: 900 }}"
+            alt="{{ product.featured_image.alt | escape }}"
+            width="{{ product.featured_image.width }}"
+            height="{{ product.featured_image.height }}"
+            id="main-product-image"
+          >
+        {%- else -%}
+          <div class="gallery-placeholder">
+            <svg width="48" height="48" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          </div>
+        {%- endif -%}
+      </div>
+      <div class="gallery-thumbs">
+        {%- for image in product.images -%}
+          <button
+            class="gallery-thumb{% if forloop.first %} active{% endif %}"
+            data-image-url="{{ image | image_url: width: 900 }}"
+            data-index="{{ forloop.index0 }}"
+          >
+            <img
+              src="{{ image | image_url: width: 120 }}"
+              alt="{{ image.alt | escape }}"
+              loading="lazy"
+              width="120"
+              height="160"
+            >
+          </button>
+        {%- endfor -%}
+        {%- if product.images.size == 0 -%}
+          {%- for i in (1..5) -%}
+            <div class="gallery-thumb{% if forloop.first %} active{% endif %}">
+              <div class="th-placeholder"></div>
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    </div>
+
+    {%- comment -%} ===== PRODUCT INFO ===== {%- endcomment -%}
+    <div class="pdp-info">
+      {%- if product.type != blank -%}
+        <p class="product-category">{{ product.type }}</p>
+      {%- endif -%}
+
+      <h1>{{ product.title }}</h1>
+
+      <div class="pdp-price-row">
+        <span class="pdp-price" data-product-price>{{ product.price | money }}</span>
+        {%- if product.compare_at_price > product.price -%}
+          <span class="pdp-price-original">{{ product.compare_at_price | money }}</span>
+          {%- assign discount = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price -%}
+          <span class="pdp-price-badge">-{{ discount }}%</span>
+        {%- endif -%}
+      </div>
+
+      {%- comment -%} Rating (from metafield or app) {%- endcomment -%}
+      {%- if product.metafields.reviews.rating != blank -%}
+        <div class="rating-row">
+          <span class="stars">
+            {%- assign rating = product.metafields.reviews.rating.value | round -%}
+            {%- for i in (1..5) -%}
+              {%- if i <= rating -%}&#9733;{%- else -%}&#9734;{%- endif -%}
+            {%- endfor -%}
+          </span>
+          <span class="rating-count">{{ product.metafields.reviews.rating.value }} ({{ product.metafields.reviews.rating_count }} ulasan)</span>
+        </div>
+      {%- endif -%}
+
+      <div class="divider"></div>
+
+      {%- if product.description != blank -%}
+        <p class="pdp-desc">{{ product.description | strip_html | truncate: 200 }}</p>
+      {%- endif -%}
+
+      {%- comment -%} === Product Form === {%- endcomment -%}
+      {%- form 'product', product, id: 'product-form', data-product-form: '' -%}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" data-variant-id>
+
+        {%- for option in product.options_with_values -%}
+          <div class="pdp-option" data-color-group>
+            <p class="option-label">
+              {{ option.name }}
+              <span data-option-value> — {{ option.selected_value }}</span>
+            </p>
+
+            {%- if option.name == 'Warna' or option.name == 'Color' or option.name == 'Colour' -%}
+              <div class="color-selector">
+                {%- for value in option.values -%}
+                  {%- assign color_handle = value | handle -%}
+                  {%- assign color_map = 'moondae-brown:#8B7355,navy:#232D3F,beige:#CDC3BD,black:#333333,cream:#F5F0EB,brown:#695242,grey:#999999,white:#FFFFFF' -%}
+                  {%- assign hex = '#CDC3BD' -%}
+                  {%- for pair in color_map -%}
+                    {%- assign parts = pair | split: ':' -%}
+                    {%- if color_handle contains parts[0] -%}
+                      {%- assign hex = parts[1] -%}
+                    {%- endif -%}
+                  {%- endfor -%}
+                  <button
+                    type="button"
+                    class="color-swatch{% if option.selected_value == value %} active{% endif %}"
+                    style="background: {{ hex }}"
+                    data-option-index="{{ forloop.parentloop.index0 }}"
+                    data-value="{{ value }}"
+                    data-name="{{ value }}"
+                    aria-label="{{ value }}"
+                  ></button>
+                {%- endfor -%}
+              </div>
+            {%- else -%}
+              <select name="options[{{ option.name }}]" class="sort-select" style="width:auto;">
+                {%- for value in option.values -%}
+                  <option value="{{ value }}" {% if option.selected_value == value %}selected{% endif %}>
+                    {{ value }}
+                  </option>
+                {%- endfor -%}
+              </select>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+
+        {%- comment -%} Quantity {%- endcomment -%}
+        <div class="pdp-option">
+          <p class="option-label">Jumlah</p>
+          <div class="qty-control">
+            <button type="button" class="qty-btn qty-minus" aria-label="Kurangi">−</button>
+            <span class="qty-num" data-qty>1</span>
+            <button type="button" class="qty-btn qty-plus" aria-label="Tambah">+</button>
+          </div>
+          <input type="hidden" name="quantity" value="1" data-qty-input>
+        </div>
+
+        <div class="divider"></div>
+
+        {%- comment -%} Add to Cart {%- endcomment -%}
+        <div class="add-to-cart-section">
+          <button
+            type="submit"
+            class="atc-btn"
+            {% unless product.available %}disabled{% endunless %}
+          >
+            {%- if product.available -%}
+              Tambah ke Keranjang
+            {%- else -%}
+              Habis
+            {%- endif -%}
+          </button>
+        </div>
+      {%- endform -%}
+
+      {%- comment -%} === Marketplace Bridge === {%- endcomment -%}
+      {%- if settings.enable_marketplace -%}
+        {%- assign tokped_link = product.metafields.marketplace.tokopedia | default: settings.tokopedia_store_url -%}
+        {%- assign shopee_link = product.metafields.marketplace.shopee | default: settings.shopee_store_url -%}
+        {%- if tokped_link != blank or shopee_link != blank -%}
+          <div class="marketplace-bridge">
+            <p class="bridge-label">Atau beli di:</p>
+            <div class="marketplace-btns">
+              {%- if tokped_link != blank -%}
+                <a href="{{ tokped_link }}?utm_source=moondae_web&utm_medium=pdp&utm_campaign={{ product.handle }}" class="marketplace-btn tokped" target="_blank" rel="noopener">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+                  Tokopedia
+                </a>
+              {%- endif -%}
+              {%- if shopee_link != blank -%}
+                <a href="{{ shopee_link }}?utm_source=moondae_web&utm_medium=pdp&utm_campaign={{ product.handle }}" class="marketplace-btn shopee" target="_blank" rel="noopener">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+                  Shopee
+                </a>
+              {%- endif -%}
+            </div>
+          </div>
+        {%- endif -%}
+      {%- endif -%}
+
+      {%- comment -%} Trust Badges {%- endcomment -%}
+      <div class="trust-badges">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'trust_badge' -%}
+            <span class="trust-badge" {{ block.shopify_attributes }}>
+              {{ block.settings.icon }} {{ block.settings.text }}
+            </span>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      <div class="divider"></div>
+
+      {%- comment -%} === Tabs === {%- endcomment -%}
+      <div class="pdp-tabs">
+        <div class="tabs-nav">
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'tab' -%}
+              <button
+                class="tab-btn{% if forloop.first %} active{% endif %}"
+                data-tab="tab-{{ block.id }}"
+                {{ block.shopify_attributes }}
+              >
+                {{ block.settings.title }}
+              </button>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'tab' -%}
+            <div class="tab-content{% if forloop.first %} active{% endif %}" id="tab-{{ block.id }}">
+              {%- if block.settings.use_product_description -%}
+                {{ product.description }}
+              {%- else -%}
+                {{ block.settings.content }}
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+
+  </div>
+</div>
+
+{%- comment -%} Related Products {%- endcomment -%}
+{%- if section.settings.show_related -%}
+  <div class="container" style="padding-bottom:80px;">
+    <div class="section-header" style="margin-top:64px;">
+      <h2 class="section-title">Kamu Mungkin Suka</h2>
+    </div>
+    <div class="product-grid">
+      {%- assign related = product.collections.first.products -%}
+      {%- for item in related limit: 4 -%}
+        {%- unless item.id == product.id -%}
+          {% render 'product-card', product: item %}
+        {%- endunless -%}
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": {{ product.title | json }},
+  "description": {{ product.description | strip_html | json }},
+  "image": {{ product.featured_image | image_url: width: 1200 | json }},
+  "brand": {
+    "@type": "Brand",
+    "name": {{ shop.name | json }}
+  },
+  "offers": {
+    "@type": "Offer",
+    "priceCurrency": {{ cart.currency.iso_code | json }},
+    "price": {{ product.price | money_without_currency | json }},
+    "availability": "{% if product.available %}https://schema.org/InStock{% else %}https://schema.org/OutOfStock{% endif %}",
+    "url": "{{ shop.url }}{{ product.url }}"
+  }
+}
+</script>
+
+{% schema %}
+{
+  "name": "Halaman Produk",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_related",
+      "label": "Tampilkan produk terkait",
+      "default": true
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust_badge",
+      "name": "Trust Badge",
+      "settings": [
+        {
+          "type": "text",
+          "id": "icon",
+          "label": "Emoji icon",
+          "default": "→"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Teks",
+          "default": "Gratis ongkir"
+        }
+      ]
+    },
+    {
+      "type": "tab",
+      "name": "Tab",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Judul tab",
+          "default": "Detail Produk"
+        },
+        {
+          "type": "checkbox",
+          "id": "use_product_description",
+          "label": "Gunakan deskripsi produk",
+          "default": false
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Konten tab"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "trust_badge", "settings": { "icon": "→", "text": "Gratis ongkir" } },
+      { "type": "trust_badge", "settings": { "icon": "✓", "text": "Garansi 30 hari" } },
+      { "type": "trust_badge", "settings": { "icon": "🔒", "text": "Pembayaran aman" } },
+      { "type": "trust_badge", "settings": { "icon": "◉", "text": "Dibuat di Indonesia" } },
+      { "type": "tab", "settings": { "title": "Detail Produk", "use_product_description": true } },
+      { "type": "tab", "settings": { "title": "Cara Merawat" } },
+      { "type": "tab", "settings": { "title": "Pengiriman" } },
+      { "type": "tab", "settings": { "title": "Styling Tips" } }
+    ]
+  }
+}
+{% endschema %}

@@ -1,0 +1,134 @@
+{%- comment -%}
+  MOONDAE — Hero Banner
+  Full-width hero slider with up to 3 slides
+{%- endcomment -%}
+
+<section class="hero" data-section-id="{{ section.id }}">
+  {%- for block in section.blocks -%}
+    <div class="hero-slide{% if forloop.first %} active{% endif %}" {{ block.shopify_attributes }}>
+      {%- if block.settings.image != blank -%}
+        <img
+          class="hero-bg"
+          src="{{ block.settings.image | image_url: width: 1920 }}"
+          srcset="
+            {{ block.settings.image | image_url: width: 750 }} 750w,
+            {{ block.settings.image | image_url: width: 1200 }} 1200w,
+            {{ block.settings.image | image_url: width: 1920 }} 1920w
+          "
+          sizes="100vw"
+          alt="{{ block.settings.heading | escape }}"
+          loading="{% if forloop.first %}eager{% else %}lazy{% endif %}"
+          width="{{ block.settings.image.width }}"
+          height="{{ block.settings.image.height }}"
+        >
+      {%- else -%}
+        <div class="hero-bg-placeholder{% if forloop.index == 2 %} slide2{% elsif forloop.index == 3 %} slide3{% endif %}"></div>
+      {%- endif -%}
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        {%- if block.settings.eyebrow != blank -%}
+          <p class="hero-eyebrow">{{ block.settings.eyebrow }}</p>
+        {%- endif -%}
+        <h1 class="hero-title">{{ block.settings.heading }}</h1>
+        {%- if block.settings.description != blank -%}
+          <p class="hero-desc">{{ block.settings.description }}</p>
+        {%- endif -%}
+        <div class="hero-ctas">
+          {%- if block.settings.button_text != blank -%}
+            <a href="{{ block.settings.button_url }}" class="btn btn-primary">{{ block.settings.button_text }}</a>
+          {%- endif -%}
+          {%- if block.settings.button_text_2 != blank -%}
+            <a href="{{ block.settings.button_url_2 }}" class="btn btn-outline-white">{{ block.settings.button_text_2 }}</a>
+          {%- endif -%}
+        </div>
+      </div>
+    </div>
+  {%- endfor -%}
+
+  {%- if section.blocks.size > 1 -%}
+    <div class="hero-dots">
+      {%- for block in section.blocks -%}
+        <button class="hero-dot{% if forloop.first %} active{% endif %}" data-slide="{{ forloop.index0 }}" aria-label="Slide {{ forloop.index }}"></button>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "class": "hero-section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "slide",
+      "name": "Slide",
+      "limit": 3,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Gambar hero"
+        },
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow text",
+          "default": "KOLEKSI TERBARU 2026"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Headline",
+          "default": "Quiet Elegance, Everyday Presence"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Deskripsi",
+          "default": "Tas yang dirancang untuk wanita yang tahu apa yang ia inginkan — elegan tanpa berlebihan."
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Tombol utama",
+          "default": "Jelajahi Koleksi"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Link tombol utama"
+        },
+        {
+          "type": "text",
+          "id": "button_text_2",
+          "label": "Tombol kedua",
+          "default": "Kenali Kami"
+        },
+        {
+          "type": "url",
+          "id": "button_url_2",
+          "label": "Link tombol kedua"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Banner",
+      "blocks": [
+        {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "KOLEKSI TERBARU 2026",
+            "heading": "Quiet Elegance, Everyday Presence",
+            "description": "Tas yang dirancang untuk wanita yang tahu apa yang ia inginkan — elegan tanpa berlebihan.",
+            "button_text": "Jelajahi Koleksi",
+            "button_text_2": "Kenali Kami"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

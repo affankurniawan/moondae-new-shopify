@@ -1,0 +1,37 @@
+{%- comment -%}
+  MOONDAE — Customer Register
+{%- endcomment -%}
+
+<div class="page-hero" style="padding:40px 0;">
+  <div class="container"><h1>Buat Akun</h1></div>
+</div>
+
+<div class="container" style="padding-bottom:80px;">
+  <div class="signup-box" style="background:white; border:1px solid var(--moondae-beige); padding:48px; max-width:440px; margin:0 auto;">
+    {%- form 'create_customer', class: 'signup-form' -%}
+      {{ form.errors | default_errors }}
+      <div class="form-row">
+        <div class="form-group">
+          <label for="reg-first">Nama Depan</label>
+          <input type="text" id="reg-first" name="customer[first_name]" required>
+        </div>
+        <div class="form-group">
+          <label for="reg-last">Nama Belakang</label>
+          <input type="text" id="reg-last" name="customer[last_name]" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="reg-email">Email</label>
+        <input type="email" id="reg-email" name="customer[email]" required autocomplete="email">
+      </div>
+      <div class="form-group">
+        <label for="reg-pass">Password</label>
+        <input type="password" id="reg-pass" name="customer[password]" required minlength="5">
+      </div>
+      <button type="submit" class="btn btn-primary btn-full" style="margin-top:12px;">Daftar</button>
+      <p style="text-align:center; font-size:0.85rem; color:var(--text-secondary); margin-top:16px;">
+        Sudah punya akun? <a href="{{ routes.account_login_url }}" style="color:var(--moondae-brown); font-weight:600;">Masuk</a>
+      </p>
+    {%- endform -%}
+  </div>
+</div>

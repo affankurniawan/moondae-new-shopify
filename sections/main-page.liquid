@@ -1,0 +1,22 @@
+{%- comment -%}
+  MOONDAE — Generic Page Template
+{%- endcomment -%}
+
+<div class="page-hero" style="padding:40px 0;">
+  <div class="container">
+    <h1>{{ page.title }}</h1>
+  </div>
+</div>
+
+<div class="container" style="padding-bottom:80px;">
+  <div style="max-width:720px; margin:0 auto;">
+    {{ page.content }}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Halaman",
+  "settings": []
+}
+{% endschema %}

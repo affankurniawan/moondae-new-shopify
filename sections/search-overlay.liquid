@@ -1,0 +1,27 @@
+{%- comment -%}
+  MOONDAE — Search Overlay
+{%- endcomment -%}
+
+<div class="search-overlay" id="search-overlay">
+  <button class="search-close" data-close-search aria-label="Tutup">&times;</button>
+  <div class="search-input-wrap">
+    <form action="{{ routes.search_url }}" method="get" role="search">
+      <input
+        type="search"
+        name="q"
+        placeholder="Cari produk..."
+        autocomplete="off"
+        aria-label="Cari"
+      >
+      <input type="hidden" name="type" value="product">
+    </form>
+  </div>
+  <p class="text-secondary">Coba: "tote bag", "shoulder bag", "navy"</p>
+</div>
+
+{% schema %}
+{
+  "name": "Search Overlay",
+  "settings": []
+}
+{% endschema %}

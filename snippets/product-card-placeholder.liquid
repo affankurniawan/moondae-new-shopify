@@ -1,0 +1,27 @@
+{%- comment -%}
+  MOONDAE — Product Card Placeholder (for theme editor preview)
+  Usage: {% render 'product-card-placeholder', index: 1, badge_text: 'BARU' %}
+{%- endcomment -%}
+
+{%- assign names = 'Luna Tote Bag,Sora Shoulder Bag,Hana Crossbody,Yuki Tote Medium,Miso Mini Bag,Kira Clutch' | split: ',' -%}
+{%- assign prices = '420.000,385.000,295.000,450.000,220.000,175.000' | split: ',' -%}
+{%- assign idx = index | minus: 1 | modulo: 6 -%}
+
+<div class="product-card">
+  <div class="product-card-img">
+    <div class="img-placeholder" style="display:flex;align-items:center;justify-content:center;">
+      <svg width="32" height="32" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24" opacity="0.3"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+    </div>
+    {%- if badge_text != blank -%}
+      <span class="product-badge badge-new">{{ badge_text }}</span>
+    {%- endif -%}
+  </div>
+  <div class="product-info">
+    <p class="product-name">{{ names[idx] }}</p>
+    <p><span class="product-price">Rp {{ prices[idx] }}</span></p>
+    <div class="color-dots">
+      <span class="color-dot" style="background:#8B7355"></span>
+      <span class="color-dot" style="background:#232D3F"></span>
+    </div>
+  </div>
+</div>

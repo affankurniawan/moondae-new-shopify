@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "show_related": true
+      },
+      "blocks": {
+        "trust_1": { "type": "trust_badge", "settings": { "icon": "→", "text": "Gratis ongkir" } },
+        "trust_2": { "type": "trust_badge", "settings": { "icon": "✓", "text": "Garansi 30 hari" } },
+        "trust_3": { "type": "trust_badge", "settings": { "icon": "🔒", "text": "Pembayaran aman" } },
+        "trust_4": { "type": "trust_badge", "settings": { "icon": "◉", "text": "Dibuat di Indonesia" } },
+        "tab_1": { "type": "tab", "settings": { "title": "Detail Produk", "use_product_description": true } },
+        "tab_2": { "type": "tab", "settings": { "title": "Cara Merawat", "content": "<p>Lap dengan kain lembut yang sedikit lembap. Hindari paparan sinar matahari langsung dalam waktu lama. Simpan di dust bag saat tidak digunakan. Hindari kontak dengan cairan berminyak atau berwarna.</p>" } },
+        "tab_3": { "type": "tab", "settings": { "title": "Pengiriman", "content": "<p><strong>Gratis ongkir</strong> ke seluruh Indonesia untuk pembelian di atas Rp 300.000.<br><br>Estimasi pengiriman: 2-4 hari kerja (Pulau Jawa), 4-7 hari kerja (luar Jawa).<br><br>Kurir: JNE, J&T, SiCepat, AnterAja.</p>" } },
+        "tab_4": { "type": "tab", "settings": { "title": "Styling Tips", "content": "<p>Luna Tote cocok untuk berbagai kesempatan. Gunakan sebagai tote untuk hari kerja, lipat menjadi shoulder bag untuk weekend, atau bawa sebagai handbag untuk acara semi-formal.</p>" } }
+      },
+      "block_order": ["trust_1", "trust_2", "trust_3", "trust_4", "tab_1", "tab_2", "tab_3", "tab_4"]
+    }
+  },
+  "order": ["main"]
+}

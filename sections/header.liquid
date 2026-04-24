@@ -1,0 +1,82 @@
+{%- comment -%}
+  MOONDAE — Header / Navigation
+  Sticky, blurred backdrop, minimal Korean aesthetic
+{%- endcomment -%}
+
+<header class="site-header" data-section-id="{{ section.id }}">
+  <div class="header-inner">
+    <a href="/" class="site-logo">
+      {%- if settings.logo != blank -%}
+        <img
+          src="{{ settings.logo | image_url: height: 40 }}"
+          alt="{{ shop.name }}"
+          width="{{ settings.logo.width }}"
+          height="40"
+          loading="eager"
+        >
+      {%- else -%}
+        {{ settings.brand_name | default: shop.name }}
+        {%- if settings.brand_tagline != blank -%}
+          <span>{{ settings.brand_tagline }}</span>
+        {%- endif -%}
+      {%- endif -%}
+    </a>
+
+    <nav class="nav-main">
+      {%- for link in section.settings.menu.links -%}
+        <a
+          href="{{ link.url }}"
+          {% if link.active %}class="active"{% endif %}
+        >
+          {{ link.title }}
+        </a>
+      {%- endfor -%}
+    </nav>
+
+    <div class="header-actions">
+      <button class="search-btn" aria-label="Cari" data-open-search>
+        {% render 'icon-search' %}
+      </button>
+      <a href="{{ routes.account_url }}" aria-label="Akun">
+        {% render 'icon-account' %}
+      </a>
+      <button class="cart-btn" aria-label="Keranjang" data-open-cart>
+        {% render 'icon-cart' %}
+        <span class="cart-badge" data-cart-count>{{ cart.item_count }}</span>
+      </button>
+      {%- comment -%}
+      <button class="hamburger" aria-label="Menu" data-open-mobile-menu>
+        <span></span><span></span><span></span>
+      </button>
+      {%- endcomment -%}
+    </div>
+  </div>
+</header>
+
+{%- comment -%} Mobile Menu {%- endcomment -%}
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-overlay" data-close-mobile-menu></div>
+  <div class="mobile-panel">
+    <button class="close-btn" aria-label="Tutup" data-close-mobile-menu>&times;</button>
+    <nav>
+      {%- for link in section.settings.menu.links -%}
+        <a href="{{ link.url }}">{{ link.title }}</a>
+      {%- endfor -%}
+    </nav>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Header",
+  "class": "header-section",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu navigasi",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

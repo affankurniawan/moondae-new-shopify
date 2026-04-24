@@ -1,0 +1,86 @@
+{%- comment -%}
+  MOONDAE — Cart Slide-out Drawer
+{%- endcomment -%}
+
+<div class="cart-overlay" id="cart-drawer">
+  <div class="cart-backdrop" data-close-cart></div>
+  <div class="cart-panel">
+    <div class="cart-header">
+      <h2>Keranjang ({{ cart.item_count }})</h2>
+      <button class="cart-close" data-close-cart aria-label="Tutup">&times;</button>
+    </div>
+
+    <div class="cart-items" id="cart-items">
+      {%- if cart.item_count > 0 -%}
+        {%- for item in cart.items -%}
+          <div class="cart-item" data-line="{{ forloop.index }}">
+            <div class="cart-item-img">
+              {%- if item.image != blank -%}
+                <img
+                  src="{{ item.image | image_url: width: 160 }}"
+                  alt="{{ item.title | escape }}"
+                  width="80"
+                  height="100"
+                >
+              {%- endif -%}
+            </div>
+            <div class="cart-item-info">
+              <p class="cart-item-name">{{ item.product.title }}</p>
+              <p class="cart-item-variant">
+                {%- unless item.variant.title == 'Default Title' -%}
+                  {{ item.variant.title }}
+                {%- endunless -%}
+              </p>
+              <div class="cart-item-row">
+                <div class="qty-control">
+                  <button
+                    class="qty-btn qty-minus"
+                    data-line="{{ forloop.index }}"
+                    data-action="decrease"
+                    aria-label="Kurangi"
+                  >−</button>
+                  <span class="qty-num">{{ item.quantity }}</span>
+                  <button
+                    class="qty-btn qty-plus"
+                    data-line="{{ forloop.index }}"
+                    data-action="increase"
+                    aria-label="Tambah"
+                  >+</button>
+                </div>
+                <span class="cart-item-price">{{ item.final_line_price | money }}</span>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- else -%}
+        <div style="text-align:center; padding:60px 0; color:var(--text-secondary);">
+          <svg width="40" height="40" fill="none" stroke="currentColor" stroke-width="1" viewBox="0 0 24 24" style="margin-bottom:16px; opacity:0.4;"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <p>Keranjang kamu masih kosong</p>
+          <a href="/collections/all" class="btn btn-secondary btn-sm" style="margin-top:16px;">Mulai Belanja</a>
+        </div>
+      {%- endif -%}
+    </div>
+
+    {%- if cart.item_count > 0 -%}
+      <div class="cart-footer">
+        <div class="promo-input">
+          <input type="text" placeholder="Kode promo" aria-label="Kode promo">
+          <button class="btn btn-secondary btn-sm">Terapkan</button>
+        </div>
+        <div class="cart-subtotal">
+          <span>Subtotal</span>
+          <strong data-cart-total>{{ cart.total_price | money }}</strong>
+        </div>
+        <p style="font-size:0.75rem; color:var(--text-secondary); margin-bottom:16px;">Ongkir dihitung saat checkout</p>
+        <a href="/checkout" class="btn btn-primary btn-full">Checkout</a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cart Drawer",
+  "settings": []
+}
+{% endschema %}

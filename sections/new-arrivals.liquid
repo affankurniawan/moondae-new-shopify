@@ -1,0 +1,81 @@
+{%- comment -%}
+  MOONDAE — New Arrivals Carousel
+{%- endcomment -%}
+
+{%- assign collection = section.settings.collection -%}
+
+<section class="new-arrivals-section">
+  <div class="container">
+    <div class="section-header">
+      <div>
+        <h2 class="section-title">{{ section.settings.heading }}</h2>
+        <p class="section-sub">{{ section.settings.subheading }}</p>
+      </div>
+      {%- if collection != blank -%}
+        <a href="{{ collection.url }}" class="see-all">Lihat Semua</a>
+      {%- endif -%}
+    </div>
+
+    <div class="carousel-wrapper">
+      <div class="carousel-track" data-carousel>
+        {%- if collection != blank -%}
+          {%- for product in collection.products limit: section.settings.limit -%}
+            {% render 'product-card', product: product, badge_text: 'BARU', badge_class: 'badge-new' %}
+          {%- endfor -%}
+        {%- else -%}
+          {%- for i in (1..8) -%}
+            {% render 'product-card-placeholder', index: i, badge_text: 'BARU' %}
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+
+      <div class="carousel-nav">
+        <button class="carousel-btn carousel-prev" data-carousel-prev aria-label="Sebelumnya">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button class="carousel-btn carousel-next" data-carousel-next aria-label="Selanjutnya">
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Baru Tiba",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Judul",
+      "default": "Baru Tiba"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subjudul",
+      "default": "Koleksi terbaru yang baru saja hadir"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Koleksi"
+    },
+    {
+      "type": "range",
+      "id": "limit",
+      "label": "Jumlah produk",
+      "min": 4,
+      "max": 12,
+      "step": 1,
+      "default": 8
+    }
+  ],
+  "presets": [
+    {
+      "name": "Baru Tiba"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,45 @@
+{%- comment -%}
+  MOONDAE — Tagline Marquee Strip
+{%- endcomment -%}
+
+<section class="tagline-strip">
+  <div class="tagline-strip-inner">
+    {%- for i in (1..2) -%}
+      {%- for block in section.blocks -%}
+        <p>{{ block.settings.text }} <span>&#10022;</span></p>
+      {%- endfor -%}
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Tagline Strip",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "tagline",
+      "name": "Tagline",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Teks",
+          "default": "NEVER OVERPOWERING BUT ALWAYS PRESENT"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Tagline Strip",
+      "blocks": [
+        { "type": "tagline", "settings": { "text": "NEVER OVERPOWERING BUT ALWAYS PRESENT" } },
+        { "type": "tagline", "settings": { "text": "FUNCTION MEETS STYLE" } },
+        { "type": "tagline", "settings": { "text": "DIBUAT DENGAN HATI DI INDONESIA" } },
+        { "type": "tagline", "settings": { "text": "KOREAN MINIMALIST AESTHETICS" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

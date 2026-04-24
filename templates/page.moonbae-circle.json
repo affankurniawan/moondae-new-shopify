@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "main": {
+      "type": "page-moonbae-circle",
+      "settings": {
+        "eyebrow": "✦ EKSKLUSIF UNTUK KAMU",
+        "heading": "Moonbae Circle",
+        "description": "Komunitas wanita yang menghargai keindahan dalam kesederhanaan. Bergabung gratis, nikmati berbagai keistimewaan.",
+        "hero_button": "Gabung Sekarang — Gratis",
+        "social_proof": "Sudah 3.200+ member bergabung",
+        "signup_heading": "Bergabung dengan Moonbae Circle",
+        "signup_text": "Gratis selamanya. Unsubscribe kapan saja. Tidak ada spam — hanya konten yang benar-benar kamu butuhkan."
+      }
+    }
+  },
+  "order": ["main"]
+}
