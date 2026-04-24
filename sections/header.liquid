@@ -6,20 +6,12 @@
 <header class="site-header" data-section-id="{{ section.id }}">
   <div class="header-inner">
     <a href="/" class="site-logo">
-      {%- if settings.logo != blank -%}
-        <img
-          src="{{ settings.logo | image_url: height: 40 }}"
-          alt="{{ shop.name }}"
-          width="{{ settings.logo.width }}"
-          height="40"
-          loading="eager"
-        >
-      {%- else -%}
-        {{ settings.brand_name | default: shop.name }}
-        {%- if settings.brand_tagline != blank -%}
-          <span>{{ settings.brand_tagline }}</span>
-        {%- endif -%}
-      {%- endif -%}
+      <img
+        src="{{ 'logo_header.png' | asset_url }}"
+        alt="{{ shop.name }}"
+        height="40"
+        loading="eager"
+      >
     </a>
 
     <nav class="nav-main">
