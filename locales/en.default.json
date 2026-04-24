@@ -1,45 +1,45 @@
 {
   "general": {
-    "search": "Cari",
-    "cart": "Keranjang",
-    "account": "Akun",
-    "close": "Tutup",
-    "loading": "Memuat..."
+    "search": "Search",
+    "cart": "Cart",
+    "account": "Account",
+    "close": "Close",
+    "loading": "Loading..."
   },
   "products": {
-    "add_to_cart": "Tambah ke Keranjang",
-    "sold_out": "Habis",
-    "unavailable": "Tidak tersedia",
-    "quantity": "Jumlah",
+    "add_to_cart": "Add to Cart",
+    "sold_out": "Sold Out",
+    "unavailable": "Unavailable",
+    "quantity": "Quantity",
     "quick_view": "Quick View"
   },
   "cart": {
-    "title": "Keranjang",
-    "empty": "Keranjang kamu masih kosong",
+    "title": "Cart",
+    "empty": "Your cart is currently empty",
     "subtotal": "Subtotal",
     "checkout": "Checkout",
-    "shipping_note": "Ongkir dihitung saat checkout",
-    "continue_shopping": "Lanjut Belanja",
-    "remove": "Hapus",
-    "added_to_cart": "Ditambahkan ke keranjang"
+    "shipping_note": "Shipping calculated at checkout",
+    "continue_shopping": "Continue Shopping",
+    "remove": "Remove",
+    "added_to_cart": "Added to cart"
   },
   "collections": {
-    "all": "Semua Koleksi",
-    "sort_by": "Urutkan",
+    "all": "All Collections",
+    "sort_by": "Sort By",
     "filter": "Filter",
-    "products_count": "{{ count }} produk"
+    "products_count": "{{ count }} products"
   },
   "customer": {
-    "login": "Masuk",
-    "register": "Daftar",
-    "logout": "Keluar",
-    "account": "Akun Saya",
-    "orders": "Riwayat Pesanan",
-    "addresses": "Alamat"
+    "login": "Login",
+    "register": "Register",
+    "logout": "Logout",
+    "account": "My Account",
+    "orders": "Order History",
+    "addresses": "Addresses"
   },
   "newsletter": {
-    "success": "Selamat datang di Moonbae Circle!",
-    "placeholder": "Alamat email kamu",
-    "submit": "Gabung"
+    "success": "Welcome to Moonbae Circle!",
+    "placeholder": "Your email address",
+    "submit": "Join"
   }
 }

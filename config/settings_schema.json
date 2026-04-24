@@ -19,12 +19,12 @@
         "type": "image_picker",
         "id": "logo",
         "label": "Logo",
-        "info": "Disarankan tinggi 40px"
+        "info": "Recommended height 40px"
       },
       {
         "type": "text",
         "id": "brand_name",
-        "label": "Nama brand",
+        "label": "Brand name",
         "default": "Moondae"
       },
       {
@@ -36,7 +36,7 @@
     ]
   },
   {
-    "name": "Warna",
+    "name": "Colors",
     "settings": [
       {
         "type": "color",
@@ -100,18 +100,18 @@
       {
         "type": "checkbox",
         "id": "enable_marketplace",
-        "label": "Tampilkan tombol marketplace di halaman produk",
+        "label": "Show marketplace buttons on product pages",
         "default": true
       },
       {
         "type": "url",
         "id": "tokopedia_store_url",
-        "label": "Link Toko Tokopedia"
+        "label": "Tokopedia Store Link"
       },
       {
         "type": "url",
         "id": "shopee_store_url",
-        "label": "Link Toko Shopee"
+        "label": "Shopee Store Link"
       }
     ]
   },
@@ -148,7 +148,7 @@
       {
         "type": "select",
         "id": "cart_type",
-        "label": "Tipe keranjang",
+        "label": "Cart type",
         "options": [
           {
             "value": "drawer",
@@ -156,7 +156,7 @@
           },
           {
             "value": "page",
-            "label": "Halaman terpisah"
+            "label": "Separate page"
           }
         ],
         "default": "drawer"
